@@ -9,12 +9,12 @@ return {
   end,
   description = "You grovel like the lowly pauper you are, begging for coins from passerbys.",
   heads = {
-    effectDescription = "+3 coins (50%), -2 hp (50%)",
+    effectDescription = "+5 coins (50%), -2 hp (50%)",
     effect = function (state)
       if love.math.random() <= 0.5 then
-        state.coins = state.coins + 3
+        state.coins = state.coins + 5
         return {
-          description = "A wealthy merchant takes pity on you and decides to give you $3.",
+          description = "A wealthy merchant takes pity on you and decides to give you $5.",
           image = image.placeholder
         }
       else
@@ -27,18 +27,18 @@ return {
     end
   },
   tails = {
-    effectDescription = "+2 coins (50%), +1 coin (50%)",
+    effectDescription = "+3 coins (50%), +2 coin (50%)",
     effect = function (state)
       if love.math.random() <= 0.5 then
-        state.coins = state.coins + 2
+        state.coins = state.coins + 3
         return {
-          description = "A passerby drops $2 into your hands. How lucky.",
+          description = "A passerby drops $3 into your hands. How lucky.",
           image = image.placeholder
         }
       else
-        state.coins = state.coins + 1
+        state.coins = state.coins + 2
         return {
-          description = "A passerby drops $1 into your hands. Better than nothing.",
+          description = "A passerby drops $2 into your hands. Better than nothing.",
           image = image.placeholder
         }
       end

@@ -4,7 +4,7 @@ local image = require("../image")
 return {
   name = "A ratty proposal",
   amount = 5,
-  weight = 0.1,
+  weight = 0.5,
   condition = function (state)
     return state.coins >= 5 and state.ratLevel == 0
   end,

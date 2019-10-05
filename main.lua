@@ -57,5 +57,5 @@ function love.mousereleased(x,y,button)
 end
 
 function love.conf(t)
-	t.console = true
+  t.console = true
 end

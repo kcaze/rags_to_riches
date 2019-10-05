@@ -15,7 +15,7 @@ return {
     effect = function (state)
         state.coins = state.coins + 10 
         return {
-          description = "It looks like the cat has a collar. You return the cat to its owner and get $3 in compensation. Yay!",
+          description = "It looks like the cat has a collar. You return the cat to its owner and get $10 in compensation. Yay!",
           image = image.houseCat
         }
     end
