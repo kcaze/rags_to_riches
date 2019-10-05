@@ -9,7 +9,7 @@ return {
   heads = {
     effectDescription = "+3 hp, ??? (requires 'Tooth')",
     effect = function (state)
-      if table.contains(state.items, item.tooth)
+      if table.contains(state.items, item.tooth) then
         state.hp = state.hp + 3 
         state.coins = state.coins + 5 
         return {
@@ -28,7 +28,7 @@ return {
   tails = {
     effectDescription = "+3 hp, ??? (requires 'Tooth')",
     effect = function (state)
-      if table.contains(state.items, item.tooth)
+      if table.contains(state.items, item.tooth) then
         state.hp = state.hp + 10
         return {
           description = "Woosh! A tooth fairy appears and takes your tooth away. She heals 10 of your hp in return.",
