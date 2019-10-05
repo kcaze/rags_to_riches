@@ -9,12 +9,12 @@ return {
   end,
   description = "You grovel like the lowly pauper you are, begging for coins from passerbys.",
   heads = {
-    effectDescription = "+5 coins (50%), -2 hp (50%)",
+    effectDescription = "+3 coins (50%), -2 hp (50%)",
     effect = function (state)
       if love.math.random() <= 0.5 then
-        state.coins = state.coins + 5
+        state.coins = state.coins + 3
         return {
-          description = "A wealthy merchant takes pity on you and decides to give you $5.",
+          description = "A wealthy merchant takes pity on you and decides to give you $3.",
           image = image.placeholder
         }
       else
