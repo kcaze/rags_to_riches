@@ -18,7 +18,12 @@ end
 state.getTurn = function()
   local turn = {}
   for i = 1,3 do
-    table.insert(turn, event.allEvents[love.math.random(#event.allEvents)])
+    table.insert(turn, {
+      event = event.allEvents[love.math.random(#event.allEvents)],
+      used = false,
+      x = 50 + (i-1)*250,
+      y = 100
+    })
   end
   return turn
 end

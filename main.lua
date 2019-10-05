@@ -4,13 +4,23 @@ local currentTurn = state.getTurn()
 
 function love.draw()
   for i = 1,3 do
-    event.draw(currentTurn[i], 50 + (i-1)*250, 100)
+    event.draw(currentTurn[i])
   end
   state.draw()
 end
 
 function love.update()
   state.getTurn()
+end
+
+function love.mousepressed(x,y,button)
+  if button ~= 1 then
+    return
+  end
+
+  for i = 1,3 do
+    event.mousepressed(state,currentTurn[i],x,y)
+  end
 end
 
 function love.conf(t)
