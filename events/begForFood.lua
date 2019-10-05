@@ -32,8 +32,6 @@ return {
   beg = {
     effectDescription = "No effect",
     effect = function (state)
-      state.hp = state.hp + 1
-      state.coins = state.coins + 1
       return {
         description = "The vender shooes you away.",
         image = image.placeholder

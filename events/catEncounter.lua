@@ -7,7 +7,7 @@ return {
   amount = 5,
   weight = 0.1,
   condition = function (state)
-    return ~table.contains(state.items, item.cat)
+    return not (table.contains(state.items, item.cat))
   end,
   description = "How cute, a furry little brown cat is purring in front of you.",
   heads = {
