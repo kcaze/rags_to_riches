@@ -41,7 +41,7 @@ event.mousepressed = function (state, obj, mx, my)
   local circleX = x+200/2
   local circleY = y+250
   local r = 30
-  if math.sqrt(math.pow(mx - circleX, 2) + math.pow(my - circleY, 2)) <= r then
+  if (math.sqrt(math.pow(mx - circleX, 2) + math.pow(my - circleY, 2)) <= r) and obj.used == false then
     e.beg.effect(state)
     obj.used = 'beg'
   end
