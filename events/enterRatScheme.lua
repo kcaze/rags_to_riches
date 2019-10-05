@@ -6,7 +6,7 @@ return {
   amount = 5,
   weight = 0.1,
   condition = function (state)
-    return state.coins >= 5
+    return state.coins >= 5 and state.ratLevel == 0
   end,
   description = "A sketchy man in a trenchcoat approaches you. For only $5, you may join the Rat Club and get 4 wonderful rats you can sell.",
   heads = {

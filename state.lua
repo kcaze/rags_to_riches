@@ -7,6 +7,7 @@ local state = {
   items={}, 
   day = 1,
   draw = draw,
+  ratLevel = 0
 }
 
 state.draw = function (currentTurn)
