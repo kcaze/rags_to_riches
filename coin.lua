@@ -4,18 +4,18 @@ local coin = {}
 local imgCoinHeads = love.graphics.newImage('images/coinHeads.png')
 local imgCoinTails = love.graphics.newImage('images/coinTails.png')
 
-coin.new = function (x,y,value)
+coin.new = function (state, x,y)
   return {
-    x = x,
-    y = y,
-    value = value,
+    x = love.math.random(200,700),
+    y = love.math.random(500,570),
+    value = (love.math.random(2) == 1) and 'heads' or 'tails',
     dragging = false,
   }
 end
 
 coin.draw = function (c)
+  love.graphics.setColor(1,1,1,1)
   if c.value == 'heads' then
-    love.graphics.setColor(1,1,1,1)
     love.graphics.draw(imgCoinHeads, c.x-30, c.y-30)
   else
     love.graphics.draw(imgCoinTails, c.x-30, c.y-30)
