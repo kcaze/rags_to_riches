@@ -32,12 +32,12 @@ return {
       if love.math.random() < 0.5 then
         return  {
           description = 'You are amazing.',
-          image = image.placeholder
+          image = image.apple
         }
       else
         return  {
           description = 'You are lame.',
-          image = image.apple
+          image = image.placeholder
         }
       end
     end
