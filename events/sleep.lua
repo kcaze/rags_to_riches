@@ -12,6 +12,7 @@ return {
       if table.contains(state.items, item.tooth) then
         state.hp = state.hp + 3 
         state.coins = state.coins + 5 
+        table.delete(state.items, item.tooth)
         return {
           description = "Woosh! A tooth fairy appears and takes your tooth away. She leaves behind 5 coins as a result.",
           image = image.toothFairy
@@ -30,6 +31,7 @@ return {
     effect = function (state)
       if table.contains(state.items, item.tooth) then
         state.hp = state.hp + 10
+        table.delete(state.items, item.tooth)
         return {
           description = "Woosh! A tooth fairy appears and takes your tooth away. She heals 10 of your hp in return.",
           image = image.toothFairy
