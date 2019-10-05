@@ -29,11 +29,17 @@ event.draw = function (obj)
     love.graphics.print("BEG", x+width/2-12, y+243)
     love.graphics.circle("line", circleX, circleY, 30)
   elseif obj.used == 'beg' then
-    love.graphics.printf({black, e.beg.description}, x, y+120, width)
+    love.graphics.printf({black, e.beg.description}, x, y, width)
+    love.graphics.setColor(1,1,1,1)
+    love.graphics.draw(e.beg.image, x, y+100)
   elseif obj.used == 'heads' then
-    love.graphics.printf({black, e.heads.description}, x, y+120, width)
+    love.graphics.printf({black, e.heads.description}, x, y, width)
+    love.graphics.setColor(1,1,1,1)
+    love.graphics.draw(e.heads.image, x, y+100)
   elseif obj.used == 'tails' then
-    love.graphics.printf({black, e.tails.description}, x, y+120, width)
+    love.graphics.printf({black, e.tails.description}, x, y, width)
+    love.graphics.setColor(1,1,1,1)
+    love.graphics.draw(e.tails.image, x, y+100)
   end
 end
 

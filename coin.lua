@@ -1,8 +1,7 @@
 require('utils')
+local image = require('image')
 
 local coin = {}
-local imgCoinHeads = love.graphics.newImage('images/coinHeads.png')
-local imgCoinTails = love.graphics.newImage('images/coinTails.png')
 
 coin.new = function (state, x,y)
   return {
@@ -16,9 +15,9 @@ end
 coin.draw = function (c)
   love.graphics.setColor(1,1,1,1)
   if c.value == 'heads' then
-    love.graphics.draw(imgCoinHeads, c.x-30, c.y-30)
+    love.graphics.draw(image.coinHeads, c.x-30, c.y-30)
   else
-    love.graphics.draw(imgCoinTails, c.x-30, c.y-30)
+    love.graphics.draw(image.coinTails, c.x-30, c.y-30)
   end
 end
 
