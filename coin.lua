@@ -3,22 +3,41 @@ local image = require('image')
 
 local coin = {}
 
-coin.new = function (state, x,y)
+coin.new = function (state,amount)
   return {
     x = love.math.random(200,700),
     y = love.math.random(500,570),
     value = (love.math.random(2) == 1) and 'heads' or 'tails',
+    amount = amount,
     dragging = false,
   }
 end
 
 coin.draw = function (c)
   love.graphics.setColor(1,1,1,1)
+  local coinImage
   if c.value == 'heads' then
-    love.graphics.draw(image.coinHeads, c.x-30, c.y-30)
+    if c.amount == 1 then
+      coinImage = image.pennyHeads
+    elseif c.amount == 5 then
+      coinImage = image.nickelHeads
+    elseif c.amount == 10 then
+      coinImage = image.dimeHeads
+    elseif c.amount == 25 then
+      coinImage = image.quarterHeads
+    end
   else
-    love.graphics.draw(image.coinTails, c.x-30, c.y-30)
+    if c.amount == 1 then
+      coinImage = image.pennyTails
+    elseif c.amount == 5 then
+      coinImage = image.nickelTails
+    elseif c.amount == 10 then
+      coinImage = image.dimeTails
+    elseif c.amount == 25 then
+      coinImage = image.quarterTails
+    end
   end
+  love.graphics.draw(coinImage, c.x-30, c.y-30)
 end
 
 coin.update = function (c)

@@ -5,7 +5,7 @@ local state = {
   name="Herman",
   maxHp = 100,
   hp=100,
-  coins=0,
+  coins=10,
   items={}, 
   draw = draw,
 }
@@ -45,7 +45,7 @@ state.mousepressed = function(currentTurn, mx,my)
   if mx >= 0 and mx <= 150 and my <= 600 and my >= 550 and state.coins > 0 then
     love.graphics.setColor({1,0,0,1})
     state.coins = state.coins - 1
-    table.insert(currentTurn.coins, coin.new(state))
+    table.insert(currentTurn.coins, coin.new(state, 1))
   end 
   local turnDone = true
   for i = 1, 3 do
