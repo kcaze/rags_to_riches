@@ -55,7 +55,7 @@ return {
   beg = {
     effectDescription = "-3 hp",
     effect = function (state)
-      state.hp = state.hp - 2
+      state.hp = state.hp - 3
       return {
         description = "You disturb an angry cat napping in the dumpster. MEOW!!! It scratches you for 3 hp.",
         image = image.angryCat
