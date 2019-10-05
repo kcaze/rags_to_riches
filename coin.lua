@@ -57,7 +57,7 @@ coin.mousereleased = function (state, currentTurn, c, mx, my)
       local obj = currentTurn[i]
       local circleX = obj.x+200/2
       local circleY = obj.y+250
-      if (obj.used == false) and (math.sqrt(math.pow(mx - circleX, 2) + math.pow(my - circleY, 2)) <= 40) then
+      if (obj.used == false) and obj.event.amount <= c.amount and (math.sqrt(math.pow(mx - circleX, 2) + math.pow(my - circleY, 2)) <= 40) then
         if c.value == 'heads' then
           local outcome = obj.event.heads.effect(state)
           obj.description = outcome.description

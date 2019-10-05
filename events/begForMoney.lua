@@ -3,8 +3,9 @@ local image = require("../image")
 
 return {
   name = "Begging for money",
+  amount = 1,
   condition = function (state)
-    return state.coins < 15
+    return state.coins < 10
   end,
   description = "You grovel like the lowly pauper you are, begging for coins from passerbys.",
   heads = {

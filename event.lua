@@ -13,7 +13,7 @@ event.draw = function (obj)
   love.graphics.setColor(1,1,1,1)
   love.graphics.rectangle("fill", x, y, width, height)
   if obj.used == false then
-    love.graphics.printf({black, e.name}, x, y, width)
+    love.graphics.printf({black, e.name .. " ($" .. e.amount .. ")"}, x, y, width)
     love.graphics.printf({black, e.description}, x, y+40, width)
     love.graphics.printf({black, "Heads: " .. e.heads.effectDescription}, x, y+120, width)
     love.graphics.printf({black, "Tails: " .. e.tails.effectDescription}, x, y+120+30, width)
