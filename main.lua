@@ -1,7 +1,7 @@
 local state = require("state")
 local event = require("event")
 local coin = require("coin")
-local currentTurn = state.getTurn()
+local currentTurn = state.getTurn(state)
 for i = 1,2 do
   table.insert(currentTurn.coins, coin.new(love.math.random(400), love.math.random(400),(love.math.random(2) == 1) and 'heads' or 'tails'))
 end

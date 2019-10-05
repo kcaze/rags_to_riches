@@ -1,3 +1,4 @@
+local inspect = require('inspect')
 local event = require('event')
 local state = {
   name="Herman",
@@ -15,16 +16,24 @@ state.draw = function ()
   love.graphics.print("HP: " .. state.hp .. "/" .. state.maxHp, 0, 40)
 end
 
-state.getTurn = function()
+state.getTurn = function(state)
   local turn = {
     coins = {}
   }
+
+  possibleEvents = {}
+  for i, event in ipairs(event.allEvents) do
+    if (event.condition == nil) or (event.condition(state)) then
+      table.insert(possibleEvents, event);
+    end
+  end
+  
   for i = 1,3 do
     table.insert(turn, {
-      event = event.allEvents[love.math.random(#event.allEvents)],
-      used = false,
-      x = 50 + (i-1)*250,
-      y = 100,
+                   event = possibleEvents[love.math.random(#possibleEvents)],
+                   used = false,
+                   x = 50 + (i-1)*250,
+                   y = 100,
     })
   end
   return turn
