@@ -112,21 +112,53 @@ state.mousepressed = function(currentTurn, mx,my)
   end
 end
 
+getEvents = function(state)
+  local possibleEvents = {}
+  local cumulativeWeight = 0
+  local weights = {}
+  local weight = 0;
+  for i, event in ipairs(event.allEvents) do
+    if (event.condition == nil) or (event.condition(state)) then
+      if type(event.weight) == 'nil' then
+        weight = 1
+      elseif type(event.weight) == 'number' then
+        weight = event.weight
+      elseif type(event.weight) == 'function' then
+        weight = event.weight(state)
+      end
+      cumulativeWeight = cumulativeWeight + weight
+      table.insert(weights, cumulativeWeight)
+      table.insert(possibleEvents, event)
+    end
+  end
+  return {
+    totalWeight = cumulativeWeight,
+    events = possibleEvents,
+    weights = weights
+  }
+end
+
+pickEvent = function(possible)
+  pickedWeight = love.math.random() * possible.totalWeight
+  for i, event in ipairs(possible.events) do
+    weight = possible.weights[i]
+    if pickedWeight < weight then
+      return event
+    end
+  end
+  return possible.events[#possible.events]
+end
+
 state.newTurn = function(state)
   local turn = {
     coins = {}
   }
 
-  possibleEvents = {}
-  for i, event in ipairs(event.allEvents) do
-    if (event.condition == nil) or (event.condition(state)) then
-      table.insert(possibleEvents, event);
-    end
-  end
-  
+  possible = getEvents(state)
+
   for i = 1,3 do
     table.insert(turn, {
-                   event = possibleEvents[love.math.random(#possibleEvents)],
+                   event = pickEvent(possible),
                    used = false,
                    x = 50 + (i-1)*250,
                    y = 100,

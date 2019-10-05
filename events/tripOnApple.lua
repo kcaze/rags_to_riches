@@ -4,6 +4,7 @@ local image = require("../image")
 return {
   name = "You find an Apple",
   amount = 1,
+  weight = 0.1,
   description = "A round shiny apple lies on the ground. You bend down to pick it up.",
   heads = {
     effectDescription = "Obtain an 'Apple'",
