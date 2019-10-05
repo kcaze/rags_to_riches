@@ -56,8 +56,8 @@ return {
       else
         state.hp = state.hp - 2
         return {
-          description = "A drunken man is annoyed with your groveling and kicks you in the shins.",
-          image = image.placeholder
+          description = "A drunken man is annoyed with your groveling and punches you in the face.",
+          image = image.punch
         }
       end
     end
