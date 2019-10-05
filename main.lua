@@ -1,3 +1,9 @@
+local state = require("state")
+local events
+
 function love.draw()
-  love.graphics.print("Hello World", 400, 300)
+  state.draw()
+end
+
+function love.update()
 end
