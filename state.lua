@@ -2,7 +2,6 @@ local inspect = require('inspect')
 local coin = require('coin')
 local event = require('event')
 local state = {
-  maxHp = 100,
   hp=100,
   coins=0,
   items={}, 
@@ -14,7 +13,7 @@ state.draw = function (currentTurn)
   love.graphics.setColor(1,1,1,1)
   love.graphics.print("Day: " .. state.day, 0, 0)
   love.graphics.print("Coins: " .. state.coins, 0, 20)
-  love.graphics.print("HP: " .. state.hp .. "/" .. state.maxHp, 0, 40)
+  love.graphics.print("HP: " .. state.hp, 0, 40)
 
   if state.coins >= 1 then
     love.graphics.setColor({1,1,1,1})
