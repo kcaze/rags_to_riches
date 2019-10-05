@@ -2,7 +2,7 @@ local apple = require("../items/apple");
 local image = require("../image")
 
 return {
-  name = "You find an Apple",
+  name = "You find an apple",
   amount = 1,
   weight = 0.1,
   description = "A round shiny apple lies on the ground. You bend down to pick it up.",
@@ -17,11 +17,11 @@ return {
     end
   },
   tails = {
-    effectDescription = "+2 coins",
+    effectDescription = "+2 coin",
     effect = function (state)
       state.coins = state.coins + 2
       return {
-        description = "You trip on the apple but with your amazing acrobatics, you safely land on the ground. A passerby applauds you and donates some money.",
+        description = "You trip on the apple but with your amazing acrobatics, you safely land on the ground. A passerby applauds you and donates 2 coins.",
         image = image.placeholder,
       }
     end

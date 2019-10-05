@@ -4,7 +4,7 @@ local image = require("../image")
 return {
   name = "A ratty proposal",
   amount = 5,
-  weight = 1,
+  weight = 0.1,
   description = "A sketchy man in a trenchcoat approaches you. If you join the Rat Club, he'll give you 4 wonderful Rats at a discount for you to sell.",
   heads = {
     effectDescription = "+4 rats",
@@ -14,7 +14,7 @@ return {
       end
       state.ratLevel = 1
       return {
-        description = "The man hands you a rat insigna. You are part of Rat Club! Now go and sell these rats",
+        description = "The man hands you a rat insigna and 4 rats. You are part of Rat Club! Now go and sell these rats",
         image = image.rat4,
       }
     end
@@ -30,11 +30,11 @@ return {
     end
   },
   beg = {
-    effectDescription = "-5 HP",
+    effectDescription = "-5 hp",
     effect = function (state)
       state.hp = state.hp - 5
       return {
-        description = [[You stare at the man, unanswering. Suddenly a rat jumps out of his trenchcoat and bites you.]],
+        description = [[You stare at the man, unanswering. Suddenly a rat jumps out of his trenchcoat and bites you. You lose 5 hp.]],
         image = image.rat,
       }
     end
