@@ -8,27 +8,33 @@ return {
   end,
   description = "There is a tasty apple in your pocket. You admire it carefully, considering whether or not to eat it.",
   heads = {
-    description = "You wolf down the apple. It fills you up with that nice apple aroma.",
     effectDescription = "-1 Apple, +5 HP",
-    image = image.placeholder,
     effect = function (state)
       table.delete(state.items, apple)
       state.hp = state.hp + 5;
+      return {
+        description = "You wolf down the apple. It fills you up with that nice apple aroma.",
+        image = image.placeholder
+      }
     end
   },
   tails = {
-    description = 'You flaunt the apple. How beautiful! How dazzling! How tasty! A stranger is convinced and gives you 5 coins for it.',
     effectDescription = "-1 Apple, +5 coins",
-    image = image.placeholder,
     effect = function (state)
       state.coins = state.coins + 5
+      return {
+        description = 'You flaunt the apple. How beautiful! How dazzling! How tasty! A stranger is convinced and gives you 5 coins for it.',
+        image = image.placeholder
+      }
     end
   },
   beg = {
-    description = 'You look at the apple carefully. "Not this time, you little fruit!" you mutter as you put it away.',
     effectDescription = "Nothing",
-    image = image.placeholder,
     effect = function (state)
+      return {
+        description = 'You look at the apple carefully. "Not this time, you little fruit!" you mutter as you put it away.',
+        image = image.placeholder
+      }
     end
   }
 }

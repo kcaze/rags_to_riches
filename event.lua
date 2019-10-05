@@ -29,17 +29,17 @@ event.draw = function (obj)
     love.graphics.print("BEG", x+width/2-12, y+243)
     love.graphics.circle("line", circleX, circleY, 30)
   elseif obj.used == 'beg' then
-    love.graphics.printf({black, e.beg.description}, x, y, width)
+    love.graphics.printf({black, obj.description}, x, y, width)
     love.graphics.setColor(1,1,1,1)
-    love.graphics.draw(e.beg.image, x, y+100)
+    love.graphics.draw(obj.image, x, y+100)
   elseif obj.used == 'heads' then
-    love.graphics.printf({black, e.heads.description}, x, y, width)
+    love.graphics.printf({black, obj.description}, x, y, width)
     love.graphics.setColor(1,1,1,1)
-    love.graphics.draw(e.heads.image, x, y+100)
+    love.graphics.draw(obj.image, x, y+100)
   elseif obj.used == 'tails' then
-    love.graphics.printf({black, e.tails.description}, x, y, width)
+    love.graphics.printf({black, obj.description}, x, y, width)
     love.graphics.setColor(1,1,1,1)
-    love.graphics.draw(e.tails.image, x, y+100)
+    love.graphics.draw(obj.image, x, y+100)
   end
 end
 
@@ -52,8 +52,10 @@ event.mousepressed = function (state, obj, mx, my)
   local circleY = y+250
   local r = 30
   if (math.sqrt(math.pow(mx - circleX, 2) + math.pow(my - circleY, 2)) <= r) and obj.used == false then
-    e.beg.effect(state)
+    local outcome = e.beg.effect(state)
     obj.used = 'beg'
+    obj.description = outcome.description
+    obj.image = outcome.image
   end
 end
 

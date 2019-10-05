@@ -40,9 +40,13 @@ coin.mousereleased = function (state, currentTurn, c, mx, my)
       local circleY = obj.y+250
       if (obj.used == false) and (math.sqrt(math.pow(mx - circleX, 2) + math.pow(my - circleY, 2)) <= 40) then
         if c.value == 'heads' then
-          obj.event.heads.effect(state)
+          local outcome = obj.event.heads.effect(state)
+          obj.description = outcome.description
+          obj.image = outcome.image
         else 
-          obj.event.tails.effect(state)
+          local outcome = obj.event.tails.effect(state)
+          obj.description = outcome.description
+          obj.image = outcome.image
         end
         obj.used = c.value
         table.delete(currentTurn.coins, c)

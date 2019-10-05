@@ -5,7 +5,7 @@ local state = {
   name="Herman",
   maxHp = 100,
   hp=100,
-  coins=100,
+  coins=0,
   items={}, 
   draw = draw,
 }
