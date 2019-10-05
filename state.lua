@@ -5,7 +5,7 @@ local state = {
   name="Herman",
   maxHp = 100,
   hp=100,
-  coins=10,
+  coins=100,
   items={}, 
   draw = draw,
 }
@@ -15,14 +15,51 @@ state.draw = function (currentTurn)
   love.graphics.print("Name: " .. state.name, 0, 0)
   love.graphics.print("Coins: " .. state.coins, 0, 20)
   love.graphics.print("HP: " .. state.hp .. "/" .. state.maxHp, 0, 40)
-  love.graphics.setColor({1,1,1,1})
-  love.graphics.rectangle('fill', 0, 550, 150, 50)
-  if love.mouse.getX() >= 0 and love.mouse.getX() <= 150 and love.mouse.getY() <= 600 and love.mouse.getY() >= 550 and state.coins > 0 then
-    love.graphics.setColor({1,0,0,1})
-  else 
-    love.graphics.setColor({0,0,0,1})
+
+  if state.coins >= 1 then
+    love.graphics.setColor({1,1,1,1})
+    love.graphics.rectangle('fill', 0, 575, 80, 25)
+    if love.mouse.getX() >= 0 and love.mouse.getX() <= 80 and love.mouse.getY() <= 600 and love.mouse.getY() >= 575 and state.coins > 0 then
+      love.graphics.setColor({1,0,0,1})
+    else 
+      love.graphics.setColor({0,0,0,1})
+    end
+    love.graphics.print('FLIP $1', 0, 575,0,1.5,1.5)
   end
-  love.graphics.print('FLIP', 40, 555,0,2.5,2.5)
+
+  if state.coins >= 5 then
+    love.graphics.setColor({1,1,1,1})
+    love.graphics.rectangle('fill', 0, 575-25, 80, 25)
+    if love.mouse.getX() >= 0 and love.mouse.getX() <= 80 and love.mouse.getY() < 575 and love.mouse.getY() >= 550 and state.coins > 0 then
+      love.graphics.setColor({1,0,0,1})
+    else 
+      love.graphics.setColor({0,0,0,1})
+    end
+    love.graphics.print('FLIP $5', 0, 550,0,1.5,1.5)
+  end 
+
+  if state.coins >= 10 then
+    love.graphics.setColor({1,1,1,1})
+    love.graphics.rectangle('fill', 0, 575-2*25, 80, 25)
+    if love.mouse.getX() >= 0 and love.mouse.getX() <= 80 and love.mouse.getY() < 550 and love.mouse.getY() >= 525 and state.coins > 0 then
+      love.graphics.setColor({1,0,0,1})
+    else 
+      love.graphics.setColor({0,0,0,1})
+    end
+    love.graphics.print('FLIP $10', 0, 525,0,1.5,1.5)
+  end
+
+  if state.coins >= 25 then
+    love.graphics.setColor({1,1,1,1})
+    love.graphics.rectangle('fill', 0, 575-3*25, 80, 25)
+    if love.mouse.getX() >= 0 and love.mouse.getX() <= 80 and love.mouse.getY() < 525 and love.mouse.getY() >= 500 and state.coins > 0 then
+      love.graphics.setColor({1,0,0,1})
+    else 
+      love.graphics.setColor({0,0,0,1})
+    end
+    love.graphics.print('FLIP $25', 0, 500,0,1.5,1.5)
+  end
+  
   local turnDone = true
   for i = 1, 3 do
     if currentTurn[i].used == false then
@@ -42,11 +79,27 @@ state.draw = function (currentTurn)
 end
 
 state.mousepressed = function(currentTurn, mx,my) 
-  if mx >= 0 and mx <= 150 and my <= 600 and my >= 550 and state.coins > 0 then
-    love.graphics.setColor({1,0,0,1})
+  if mx >= 0 and mx <= 80 and my < 600 and my >= 575 and state.coins >= 1 then
     state.coins = state.coins - 1
     table.insert(currentTurn.coins, coin.new(state, 1))
   end 
+
+  if mx >= 0 and mx <= 80 and my < 575 and my >= 550 and state.coins >= 5 then
+    state.coins = state.coins - 5
+    table.insert(currentTurn.coins, coin.new(state, 5))
+  end 
+
+  if mx >= 0 and mx <= 80 and my < 550 and my >= 525 and state.coins >= 10 then
+    state.coins = state.coins - 10 
+    table.insert(currentTurn.coins, coin.new(state, 10))
+  end 
+
+  if mx >= 0 and mx <= 80 and my < 525 and my >= 500 and state.coins >= 25 then
+    state.coins = state.coins - 25 
+    table.insert(currentTurn.coins, coin.new(state, 25))
+  end 
+  
+
   local turnDone = true
   for i = 1, 3 do
     if currentTurn[i].used == false then
