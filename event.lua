@@ -30,6 +30,10 @@ event.draw = function (obj)
     love.graphics.circle("line", circleX, circleY, 30)
   elseif obj.used == 'beg' then
     love.graphics.printf({black, e.beg.description}, x, y+120, width)
+  elseif obj.used == 'heads' then
+    love.graphics.printf({black, e.heads.description}, x, y+120, width)
+  elseif obj.used == 'tails' then
+    love.graphics.printf({black, e.tails.description}, x, y+120, width)
   end
 end
 
