@@ -45,7 +45,10 @@ function love.mousereleased(x,y,button)
     return
   end
   for i = 1, #currentTurn.coins do
-    coin.mousereleased(currentTurn.coins[i],x,y)
+    if currentTurn.coins[i].dragging then
+      coin.mousereleased(state, currentTurn, currentTurn.coins[i],x,y)
+      break
+    end
   end
 end
 
