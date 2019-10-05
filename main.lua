@@ -1,7 +1,13 @@
 local state = require("state")
+local music = require("music")
 local event = require("event")
 local coin = require("coin")
 state.newTurn(state)
+
+function love.load()
+  music.track1:setLooping(true)
+  music.track1:play()
+end
 
 function love.draw()
   for i = 1,3 do
