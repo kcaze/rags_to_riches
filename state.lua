@@ -2,17 +2,17 @@ local inspect = require('inspect')
 local coin = require('coin')
 local event = require('event')
 local state = {
-  name="Herman",
   maxHp = 100,
   hp=100,
-  coins=100,
+  coins=0,
   items={}, 
+  day = 1,
   draw = draw,
 }
 
 state.draw = function (currentTurn)
   love.graphics.setColor(1,1,1,1)
-  love.graphics.print("Name: " .. state.name, 0, 0)
+  love.graphics.print("Day: " .. state.day, 0, 0)
   love.graphics.print("Coins: " .. state.coins, 0, 20)
   love.graphics.print("HP: " .. state.hp .. "/" .. state.maxHp, 0, 40)
 
@@ -108,6 +108,7 @@ state.mousepressed = function(currentTurn, mx,my)
   end
   if turnDone == true and mx >= (800-150) and mx <= 800 and my <= 600 and my >= 550 then
     state.newTurn(state)
+    state.day = state.day + 1
   end
 end
 
