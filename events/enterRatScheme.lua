@@ -5,7 +5,10 @@ return {
   name = "A ratty proposal",
   amount = 5,
   weight = 0.1,
-  description = "A sketchy man in a trenchcoat approaches you. If you join the Rat Club, he'll give you 4 wonderful Rats at a discount for you to sell.",
+  condition = function (state)
+    return state.coins >= 5
+  end,
+  description = "A sketchy man in a trenchcoat approaches you. For only $5, you may join the Rat Club and get 4 wonderful rats you can sell.",
   heads = {
     effectDescription = "+4 rats",
     effect = function (state)
