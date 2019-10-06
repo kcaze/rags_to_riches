@@ -1,4 +1,5 @@
 local image = require('image')
+local font = require('font')
 local event = {
   allEvents = {},
 }
@@ -21,10 +22,10 @@ event.draw = function (obj)
   local height = 300
   love.graphics.setColor(1,1,1,1)
   love.graphics.draw(cardBackground[e.amount], x, y)
-  love.graphics.setNewFont("font.ttf", 24):setLineHeight(0.75)
+  font.setFont(24)
   love.graphics.printf({black, e.name}, x+13, y+10, width, "center")
   if obj.used == false then
-    love.graphics.setNewFont("font.ttf", 16):setLineHeight(0.75)
+    font.setFont(16)
     love.graphics.printf({semiBlack, e.description}, x+13, y+55, width)
     love.graphics.printf({black, "H:"}, x+13, y+140, width)
     love.graphics.printf({semiBlack, e.heads.effectDescription}, x+30, y+140, width-17)
@@ -49,20 +50,21 @@ event.draw = function (obj)
     end
     love.graphics.circle("fill", circleX, circleY, 30-1, 100)
     love.graphics.setColor(0,0,0,1)
-    love.graphics.setNewFont("font.ttf", 18):setLineHeight(0.75)
+    font.setFont(18)
     love.graphics.printf({black,"Beg"}, x+226/2-30, y+290, 60, "center")
+    love.graphics.printf({semiBlack, "$"..e.amount}, x+10, y+310, width, "right")
   elseif obj.used == 'beg' then
-    love.graphics.setNewFont("font.ttf", 16):setLineHeight(0.75)
+    font.setFont(16)
     love.graphics.printf({semiBlack, obj.description}, x+13, y+55, width)
     love.graphics.setColor(1,1,1,1)
     love.graphics.draw(obj.image, x+13, y+140)
   elseif obj.used == 'heads' then
-    love.graphics.setNewFont("font.ttf", 16):setLineHeight(0.75)
+    font.setFont(16)
     love.graphics.printf({semiBlack, obj.description}, x+13, y+55, width)
     love.graphics.setColor(1,1,1,1)
     love.graphics.draw(obj.image, x+13, y+140)
   elseif obj.used == 'tails' then
-    love.graphics.setNewFont("font.ttf", 16):setLineHeight(0.75)
+    font.setFont(16)
     love.graphics.printf({semiBlack, obj.description}, x+13, y+55, width)
     love.graphics.setColor(1,1,1,1)
     love.graphics.draw(obj.image, x+13, y+140)
