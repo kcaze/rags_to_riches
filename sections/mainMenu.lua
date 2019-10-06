@@ -4,6 +4,7 @@ local event = require("../event")
 local coin = require("../coin")
 local image = require("../image")
 local font = require("../font")
+local savefile = require("../savefile")
 local mainMenu = {}
 
 mainMenu.load = function()
@@ -58,8 +59,10 @@ mainMenu.update = function (dt)
   end
   
   if mx >= (800-150)/2 and mx <= (800+150)/2 and my >= 320 and my <= 320+36+20 then
-    --continueFloat = math.fmod(continueFloat + 8*dt, 2*math.pi)
-    --continueHover = true
+    if love.filesystem.getInfo(savefile.SAVE_FILE_NAME) then
+      continueFloat = math.fmod(continueFloat + 8*dt, 2*math.pi)
+      continueHover = true
+    end
   else 
     if math.fmod(continueFloat, math.pi) > 0.2 then
       continueFloat = math.fmod(continueFloat + 10*dt, 2*math.pi)
@@ -73,7 +76,10 @@ end
 
 mainMenu.mousepressed = function (x,y,button)
   if newGameHover then
-    mainMenu.switchSection('game')
+    mainMenu.switchSection('game', false)
+  end
+  if continueHover then
+    mainMenu.switchSection('game', true)
   end
 end
 

@@ -3,10 +3,11 @@ local music = require("../music")
 local event = require("../event")
 local coin = require("../coin")
 local image = require("../image")
+local savefile = require("../savefile")
 local game = {}
 
-game.load = function()
-  state.initializeState()
+game.load = function(loadSave)
+  state.initializeState(loadSave)
   --event.printEventTable()
 end
 

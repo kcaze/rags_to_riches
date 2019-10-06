@@ -7,14 +7,15 @@ local sections = {
   mainMenu = mainMenu
 }
 
-function switchSection(newSection)
+function switchSection(newSection, data)
   currentSection = sections[newSection]
   currentSection.switchSection = switchSection
-  currentSection.load()
+  currentSection.load(data)
 end
 
 function love.load()
   love.window.setMode(800,600,{highdpi = true})
+  love.filesystem.setIdentity('beggars-can-be-choosers')
   switchSection('mainMenu')
 end
 
