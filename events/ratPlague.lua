@@ -51,7 +51,7 @@ return {
     end
   },
   beg = {
-    effectDescription = "-100 hp (10%), -15 hp (90%) -5 hp (15%)",
+    effectDescription = "-100 hp (10%), -15 hp (90%)",
     effect = function (state)
       if p < 0.1 then
         state.hp = state.hp - 100

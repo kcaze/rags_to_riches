@@ -14,7 +14,7 @@ return {
     effect = function (state)
       local p = love.math.random()
       table.delete(state.items, rat)
-      stat.ratsSold = state.ratsSold + 1
+      state.ratsSold = state.ratsSold + 1
       if p < 0.25 then
         state.coins = state.coins + 25
         return {
@@ -34,7 +34,7 @@ return {
     effect = function (state)
       state.coins = state.coins + 3
       table.delete(state.items, rat)
-      stat.ratsSold = state.ratsSold + 1
+      state.ratsSold = state.ratsSold + 1
       return {
         description = [[You sell the rat to the olde pet shop for 3 coins.]],
         image = image.placeholder,
@@ -42,12 +42,12 @@ return {
     end
   },
   beg = {
-    effectDescription = "-1 rat and +6 coins (20%), -2 hp",
+    effectDescription = "-1 rat and +6 coins (20%), -2 hp (80%)",
     effect = function (state)
       local p = love.math.random()
       if p < 0.2 then
         table.delete(state.items, rat)
-        stat.ratsSold = state.ratsSold + 1
+        state.ratsSold = state.ratsSold + 1
         state.coins = state.coins + 6
         return {
           description = [[You stumble upon a rat lover and talk up the rat you have. She buys your rat for 6 whole coins!]],

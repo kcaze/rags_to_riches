@@ -16,7 +16,7 @@ return {
             state.happiness = state.happiness + 1
             return {
                 description = "You pet Whiskers. Whiskers purrs in apprecation. You feel happier.",
-                image = image.placeholder
+                image = image.happyCat,
             }
         end
     },
@@ -46,12 +46,12 @@ return {
                 table.delete(state.items, cat)
                 return {
                   description = [[Your cat feels ignored and runs away.]],
-                  image = image.placeholder
+                  image = image.sadCat,
                 }
             else
                 return {
                   description = [[Your cat feels ignored. Aww.]],
-                  image = image.placeholder
+                  image = image.sadCat,
                 }          
             end
         end
