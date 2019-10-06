@@ -2,7 +2,7 @@ require('utils')
 local image = require("../image")
 
 return {
-  name = "You encounter an untitled goose.",
+  name = "Meet an untitled goose",
   amount = 5,
   weight = 0.2,
   condition = function (state)

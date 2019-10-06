@@ -2,7 +2,7 @@ local apple = require("../items/apple");
 local image = require("../image")
 
 return {
-  name = "You find an apple",
+  name = "Find an apple",
   amount = 1,
   weight = 0.1,
   description = "A round shiny apple lies on the ground. You bend down to pick it up.",

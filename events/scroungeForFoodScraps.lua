@@ -2,7 +2,7 @@ require('utils')
 local image = require("../image")
 
 return {
-  name = "Scrounge for food scraps",
+  name = "Scrounge for food",
   amount = 1,
   condition = function (state)
     return state.coins < 10 
