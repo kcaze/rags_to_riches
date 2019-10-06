@@ -6,7 +6,7 @@ return {
   name = "Sell a rat",
   amount = 1,
   condition = function (state)
-    return table.contains(state.items, rat) and state.ratLevel == 1
+    return table.contains(state.items, rat) and state.ratLevel >= 1
   end,
   description = "You have a rat to sell!",
   heads = {
