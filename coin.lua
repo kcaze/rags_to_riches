@@ -1,5 +1,6 @@
 require('utils')
 local image = require('image')
+local font = require('font')
 
 local coin = {}
 
@@ -23,7 +24,7 @@ end
 coin.draw = function (c)
   love.graphics.setColor(1,1,1,1)
   love.graphics.draw(coinImages[c.amount], c.x-30, c.y-30)
-  love.graphics.setNewFont("font.ttf", 24):setLineHeight(0.75)
+  font.setFont(24)
   if c.value == 'heads' then
     love.graphics.printf({{0,0,0,1},"H"}, c.x-29, c.y-19, 60, "center")
   else

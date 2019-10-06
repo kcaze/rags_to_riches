@@ -2,7 +2,7 @@ require('utils')
 local image = require("../image")
 
 return {
-  name = "You consider eating an Apple",
+  name = "Eat an apple",
   amount = 1,
   condition = function (state)
      table.contains(state.items, apple)

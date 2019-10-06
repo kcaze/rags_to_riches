@@ -1,7 +1,7 @@
 local image = require("../image")
 
 return {
-  name = "You forage for mushrooms",
+  name = "Forage for mushrooms",
   amount = 1,
   weight = 0.5,
   description = "The nearby forest is supposedly full of delicious mushrooms.",

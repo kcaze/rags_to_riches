@@ -3,7 +3,7 @@ local image = require("../image")
 local item = require("../item")
 
 return {
-  name = "You go to sleep.",
+  name = "Sleep",
   amount = 1,
   description = "Sleeping 8 hours a day is good for you!",
   heads = {

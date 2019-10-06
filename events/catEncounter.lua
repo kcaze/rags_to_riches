@@ -3,7 +3,7 @@ local image = require("../image")
 local item = require("../item")
 
 return {
-  name = "You encounter a cat.",
+  name = "Meet a cat",
   amount = 5,
   weight = 0.1,
   condition = function (state)

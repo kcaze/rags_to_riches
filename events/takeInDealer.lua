@@ -11,10 +11,11 @@ return {
   end,
   description = "You notice a person on the street. They could be a good potential rat dealer.",
   heads = {
-    effectDescription = "(50%) +2 dealer (50%) +1 rat",
+    effectDescription = "+2 dealer (50%), +1 rat (50%)",
     effect = function (state)
       local p = love.math.random()
       if p < 0.5 then
+        stat.ratsSold = state.ratsSold + 8
         table.insert(state.items, dealer)
         table.insert(state.items, dealer)
         return {
@@ -30,10 +31,11 @@ return {
     end
   },
   tails = {
-    effectDescription = "+1 dealer (80%) ??? (20%)",
+    effectDescription = "+1 dealer (80%), ??? (20%)",
     effect = function (state)
       local p = love.math.random()
       if p < 0.8 then
+        stat.ratsSold = state.ratsSold + 4
         table.insert(state.items, dealer)
         return {
           description = [[You convince one person to join you as a dealer! Yay!]],
@@ -61,7 +63,7 @@ return {
       else
         table.insert(state.items, rat)
         return {
-          description = [[You try to approach the person, but don't make it so far. A rat jumps out and into your arms. It's friendly.. ready to be sold.]],
+          description = [[The person leaves before you get there. A rat jumps out and into your arms. It's friendly.. and ready to be sold.]],
           image = image.rat,
         }
       end
