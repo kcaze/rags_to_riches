@@ -2,15 +2,20 @@ local game = require("sections/game")
 local mainMenu = require("sections/mainMenu")
 
 local currentSection = nil
+local sections = {
+  game = game,
+  mainMenu = mainMenu
+}
 
 function switchSection(newSection)
-  newSection.load()
-  currentSection = newSection
+  currentSection = sections[newSection]
+  currentSection.switchSection = switchSection
+  currentSection.load()
 end
 
 function love.load()
   love.window.setMode(800,600,{highdpi = true})
-  switchSection(game)
+  switchSection('mainMenu')
 end
 
 function love.draw()
