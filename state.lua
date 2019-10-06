@@ -1,3 +1,4 @@
+require("utils")
 local inspect = require('inspect')
 local font = require('font')
 local coin = require('coin')
@@ -36,6 +37,24 @@ state.draw = function (currentTurn)
   love.graphics.print("Day: " .. state.day, 5, 0)
   love.graphics.print("Coins: " .. state.coins, 5, 20)
   love.graphics.print("HP: " .. state.hp, 5, 40)
+
+  local itemCounters = {}
+  for i = 1, #state.items do
+    if not table.containsKey(itemCounters, state.items[i]) then
+      itemCounters[state.items[i]] = 0
+    end
+    itemCounters[state.items[i]] = itemCounters[state.items[i]] + 1 
+  end
+ 
+  font.setFont(16)
+  love.graphics.print("Inventory:", 100,2)
+  local idx = 0
+  for itemObj, itemNum in pairs(itemCounters) do
+    idx = idx + 1
+    love.graphics.draw(itemObj.image, 120+idx*45, 25,0, 40/200,40/200)
+    font.setFont(16)
+    love.graphics.printf(itemNum, 120+idx*45,5,40,"right")
+  end
 
   if state.gameOver then
     state.drawGameOver(currentTurn)

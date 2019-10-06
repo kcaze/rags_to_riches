@@ -5,7 +5,7 @@ return {
   name = "The plague strikes",
   amount = 5,
   weight = function (state)
-    return state.ratsSold / 50
+    return state.ratsSold / 30
   end,
   condition = function (state)
     return state.ratsSold > 10

@@ -53,7 +53,7 @@ return {
           image = image.placeholder,
         }
       else
-        state.hp = state.coins + 5
+        state.coins = state.coins + 5
         return {
           description = [[The dealer pities you and hands you 5 coins.]],
           image = image.placeholder,
