@@ -20,7 +20,7 @@ return {
         table.insert(state.items, items.applePie)
         return {
           description = "You bake a warm apple pie.",
-          image = image.placeholder
+          image = image.applePie
         }
     end
     },
@@ -30,7 +30,7 @@ return {
         state.hp = state.hp - 5
         return {
           description = 'As you heat up the oven, it explodes.',
-          image = image.placeholder
+          image = image.explosion
         }
     end
     },
@@ -44,7 +44,7 @@ return {
         table.delete(state.items, items.apple)
         return {
           description = 'You left it in the oven for too long! Your apple pie is burned to a crisp.',
-          image = image.placeholder
+          image = image.burntPie
         }
     end
     }
