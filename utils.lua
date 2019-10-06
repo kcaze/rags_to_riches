@@ -8,6 +8,15 @@ function table.contains(tab, element)
   return false
 end
 
+function table.containsKey(tab, element)
+  for key, _ in pairs(tab) do
+    if key == element then
+      return true
+    end
+  end
+  return false
+end
+
 function table.delete(tab, element)
   for num, value in pairs(tab) do
     if value == element then
