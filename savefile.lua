@@ -1,6 +1,7 @@
 require("utils")
 local pickle = require("pickle")
 local item = require("item")
+local event = require("event")
 
 local savefile = {}
 
@@ -22,12 +23,12 @@ savefile.save = function (state)
     elseif key == "items" then
       picklableState.items = serializeItems(value)
     elseif key == "currentTurn" then
-      picklableState.currentTurn = "TODO"
+      picklableState.currentTurn = serializeCurrentTurn(state.currentTurn)
     else
       picklableState[key] = value
     end
   end
-  --print(pickle.pickle(picklableState))
+  print(pickle.pickle(picklableState))
 end
 
 function serializeItems(items)
@@ -37,11 +38,13 @@ function serializeItems(items)
   end
   local serializedItems = {}
   for i = 1, #items do
-    print(invertedItem[items[i]])
     table.insert(serializedItems, invertedItem[items[i]])
   end
-  print(pickle.pickle(serializedItems))
   return serializedItems
+end
+
+function serializeCurrentTurn(currentTurn)
+  return 'hi'
 end
 
 return savefile
