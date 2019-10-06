@@ -3,7 +3,8 @@ local music = require("music")
 local event = require("event")
 local coin = require("coin")
 local image = require("image")
-state.newTurn(state)
+
+state.initializeState()
 
 function love.load()
   love.window.setMode(800,600,{highdpi = true})
@@ -20,7 +21,7 @@ end
 
 function love.draw()
   state.draw(state.currentTurn)
-  for i = 1,3 do
+  for i = 1,#state.currentTurn do
     event.draw(state.currentTurn[i])
   end
   for i = 1, #state.currentTurn.coins do
@@ -48,7 +49,7 @@ function love.mousepressed(x,y,button)
       return
     end
   end
-  for i = 1,3 do
+  for i = 1,#state.currentTurn do
     event.mousepressed(state,state.currentTurn[i],x,y)
   end
   state.mousepressed(state.currentTurn,x,y)

@@ -2,14 +2,16 @@ local inspect = require('inspect')
 local coin = require('coin')
 local event = require('event')
 local image = require('image')
-local state = {
-  hp=100,
-  coins=1000,
-  items={}, 
-  day = 1,
-  draw = draw,
-  ratLevel = 0
-}
+local state = {}
+state.initializeState = function()
+  state.hp = 30
+  state.coins = 0
+  state.items = {}
+  state.day = 1
+  state.ratLevel = 0
+  state.gameOver = false
+  state.newTurn(state)
+end
 
 local bg = 0
 bg_offset_w = 0
@@ -27,6 +29,11 @@ state.draw = function (currentTurn)
   love.graphics.print("Day: " .. state.day, 5, 0)
   love.graphics.print("Coins: " .. state.coins, 5, 20)
   love.graphics.print("HP: " .. state.hp, 5, 40)
+
+  if state.gameOver then
+    state.drawGameOver(currentTurn)
+    return
+  end
 
   local semiBlack = {0,0,0,0.75}
   local black = {0,0,0,1}
@@ -131,6 +138,40 @@ state.draw = function (currentTurn)
   end
 end
 
+state.drawGameOver = function(currentTurn)
+  local black = {0,0,0,1}
+  local semiBlack = {0,0,0,0.75}
+  local width = 200
+  local height = 300
+  local x = 800/2 - 226/2
+  local y = 80
+  local r = 40
+  local circleX = x+226/2
+  local circleY = y+270
+  love.graphics.setColor(1,1,1,1)
+  love.graphics.draw(image.cardGameOver, x, y)
+  love.graphics.setNewFont("font.ttf", 24):setLineHeight(0.75)
+  love.graphics.printf({black, "Game Over"}, x+13, y+10, width, "center")
+  love.graphics.setNewFont("font.ttf", 16):setLineHeight(0.75)
+  love.graphics.printf({semiBlack, "You started from nothing and clawed your way through " .. state.day-1 .. " arduous " ..(state.day > 1 and "days" or "day")..". But in the end, it doesn't even matter."}, x+13, y+55, width)
+    if math.sqrt(math.pow(love.mouse.getX() - circleX, 2) + math.pow(love.mouse.getY() - circleY, 2)) <= r then
+      love.graphics.setColor(0,0,0,0.4)
+    else
+      love.graphics.setColor(0,0,0,0.15)
+    end
+    love.graphics.setLineWidth(4)
+    love.graphics.circle("line", circleX, circleY, r, 100)
+  if math.sqrt(math.pow(love.mouse.getX() - circleX, 2) + math.pow(love.mouse.getY() - circleY, 2)) <= r then
+    love.graphics.setColor(0,0,0,0.55)
+  else
+    love.graphics.setColor(0,0,0,0.3)
+  end
+  love.graphics.circle("fill", circleX, circleY, r-1, 100)
+  love.graphics.setColor(0,0,0,1)
+  love.graphics.setNewFont("font.ttf", 18):setLineHeight(0.75)
+  love.graphics.printf({black,"Restart"}, x+226/2-29, y+257, 60, "center")
+end
+
 state.mousepressed = function(currentTurn, mx,my) 
   if mx >= 5 and mx <= 85 and my < 600 and my >= 575 and state.coins >= 1 then
     state.coins = state.coins - 1
@@ -159,7 +200,7 @@ state.mousepressed = function(currentTurn, mx,my)
   
 
   local turnDone = true
-  for i = 1, 3 do
+  for i = 1, #currentTurn do
     if currentTurn[i].used == false then
       turnDone = false
     end
@@ -167,6 +208,19 @@ state.mousepressed = function(currentTurn, mx,my)
   if turnDone == true and mx >= (800-100-5) and mx <= 800-5 and my <= 600 and my >= (600-30) then
     state.newTurn(state)
     state.day = state.day + 1
+  end
+
+  if state.gameOver then
+    local width = 200
+    local height = 300
+    local x = 800/2 - 226/2
+    local y = 80
+    local r = 40
+    local circleX = x+226/2
+    local circleY = y+270
+    if (math.sqrt(math.pow(mx - circleX, 2) + math.pow(my - circleY, 2)) <= r) then
+      state.initializeState()
+    end
   end
 end
 
@@ -212,16 +266,20 @@ state.newTurn = function(state)
   local turn = {
     coins = {}
   }
-
-  possible = getEvents(state)
-
-  for i = 1,3 do
-    table.insert(turn, {
-                   event = pickEvent(possible),
-                   used = false,
-                   x = 20 + (i-1)*(226 + 41),
-                   y = 80,
-    })
+  
+  if state.hp <= 0 then
+    state.gameOver = true
+  else 
+    possible = getEvents(state)
+  
+    for i = 1,3 do
+      table.insert(turn, {
+                    event = pickEvent(possible),
+                    used = false,
+                    x = 20 + (i-1)*(226 + 41),
+                    y = 80,
+      })
+    end
   end
   state.currentTurn = turn
 end
