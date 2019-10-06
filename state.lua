@@ -8,7 +8,8 @@ local state = {
   items={}, 
   day = 1,
   draw = draw,
-  ratLevel = 0
+  ratLevel = 0,
+  ratsSold = 0
 }
 
 local bg = 0
