@@ -1,69 +1,31 @@
-local state = require("state")
-local music = require("music")
-local event = require("event")
-local coin = require("coin")
-local image = require("image")
-state.newTurn(state)
+local game = require("sections/game")
+
+local currentSection = nil
+
+function switchSection(newSection)
+  newSection.load()
+  currentSection = newSection
+end
 
 function love.load()
   love.window.setMode(800,600,{highdpi = true})
-  love.graphics.setNewFont("font.ttf", 18):setLineHeight(0.6)
-  for i = 1, 8 do
-    local bg = image['bg'..i]
-    bg:setWrap("repeat", "repeat")
-    image['bg'..i..'Quad'] = love.graphics.newQuad(0,0,800,600,bg:getWidth(),bg:getHeight())
-  end
-
-  music.track1:setLooping(true)
-  -- music.track1:play()
+  switchSection(game)
 end
 
 function love.draw()
-  state.draw(state.currentTurn)
-  for i = 1,3 do
-    event.draw(state.currentTurn[i])
-  end
-  for i = 1, #state.currentTurn.coins do
-    coin.draw(state.currentTurn.coins[i])
-  end
+  currentSection.draw()
 end
 
 function love.update(dt)
-  state.update(dt)
-  for i = 1, #state.currentTurn.coins do
-    coin.update(state.currentTurn.coins[i])
-  end
+  currentSection.update(dt)
 end
 
 function love.mousepressed(x,y,button)
-  if button ~= 1 then
-    return
-  end
-
-  -- Reverse order from drawing so the top most coin gets priority in dragging.
-  for i = #state.currentTurn.coins,1,-1 do
-    local c = state.currentTurn.coins[i]
-    if math.sqrt(math.pow(x - c.x,2) + math.pow(y-c.y,2)) <= 30 then
-      coin.mousepressed(state.currentTurn.coins[i],x,y)
-      return
-    end
-  end
-  for i = 1,3 do
-    event.mousepressed(state,state.currentTurn[i],x,y)
-  end
-  state.mousepressed(state.currentTurn,x,y)
+  currentSection.mousepressed(x,y,button)
 end
 
 function love.mousereleased(x,y,button)
-  if button ~= 1 then
-    return
-  end
-  for i = 1, #state.currentTurn.coins do
-    if state.currentTurn.coins[i].dragging then
-      coin.mousereleased(state, state.currentTurn, state.currentTurn.coins[i],x,y)
-      break
-    end
-  end
+  currentSection.mousereleased(x,y,button)
 end
 
 function love.conf(t)
