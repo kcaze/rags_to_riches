@@ -8,4 +8,7 @@ for i = 1, 8 do
   bg:setWrap("repeat", "repeat")
   image['bg'..i..'Quad'] = love.graphics.newQuad(0,0,800,600,bg:getWidth(),bg:getHeight())
 end
+local mainMenuBg = image.mainMenuBg
+mainMenuBg:setWrap("repeat", "repeat")
+image.mainMenuBgQuad = love.graphics.newQuad(0,0,800,600,mainMenuBg:getWidth(),mainMenuBg:getHeight())
 return image 

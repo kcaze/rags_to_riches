@@ -1,4 +1,5 @@
 local game = require("sections/game")
+local mainMenu = require("sections/mainMenu")
 
 local currentSection = nil
 
