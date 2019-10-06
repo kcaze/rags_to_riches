@@ -20,6 +20,7 @@ bg_offset_h = 0
 state.update = function (dt)
   bg_offset_w = (bg_offset_w - 3*dt)%image['bg'..bg]:getWidth()
   bg_offset_h = (bg_offset_h + 3*dt)%image['bg'..bg]:getHeight()
+  print('hi')
   image['bg'..bg..'Quad']:setViewport(bg_offset_w,bg_offset_h,800,600,image['bg'..bg]:getWidth(),image['bg'..bg]:getHeight())
 end
 
