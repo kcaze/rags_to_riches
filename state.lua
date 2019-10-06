@@ -14,7 +14,7 @@ state.initializeState = function()
   state.happiness = 0
   state.ratLevel = 0
   state.ratsSold = 0
-  state.appleFestival = false
+  state.appleFestival = 0
   state.gameOver = false
   state.newTurn(state)
 end
