@@ -236,7 +236,7 @@ getEvents = function(state)
   local cumulativeWeight = 0
   local weights = {}
   local weight = 0;
-  for i, event in ipairs(event.allEvents) do
+  for k, event in pairs(event.allEvents) do
     if (event.condition == nil) or (event.condition(state)) then
       if type(event.weight) == 'nil' then
         weight = 1
