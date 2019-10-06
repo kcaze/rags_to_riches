@@ -43,9 +43,9 @@ event.draw = function (obj)
     love.graphics.setLineWidth(4)
     love.graphics.circle("line", circleX, circleY, 30, 100)
     if math.sqrt(math.pow(love.mouse.getX() - circleX, 2) + math.pow(love.mouse.getY() - circleY, 2)) <= r then
-      love.graphics.setColor(0,0,0,0.75)
+      love.graphics.setColor(0,0,0,0.65)
     else
-      love.graphics.setColor(0,0,0,0.5)
+      love.graphics.setColor(0,0,0,0.4)
     end
     love.graphics.circle("fill", circleX, circleY, 30-1, 100)
     love.graphics.setColor(0,0,0,1)

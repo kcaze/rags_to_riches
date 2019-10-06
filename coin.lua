@@ -3,6 +3,13 @@ local image = require('image')
 
 local coin = {}
 
+local coinImages = {}
+coinImages[1] = image.coin1
+coinImages[5] = image.coin5
+coinImages[25] = image.coin25
+coinImages[100] = image.coin100
+coinImages[1000] = image.coin1000
+
 coin.new = function (state,amount)
   return {
     x = love.math.random(200,700),
@@ -15,29 +22,13 @@ end
 
 coin.draw = function (c)
   love.graphics.setColor(1,1,1,1)
-  local coinImage
+  love.graphics.draw(coinImages[c.amount], c.x-30, c.y-30)
+  love.graphics.setNewFont("font.ttf", 24):setLineHeight(0.75)
   if c.value == 'heads' then
-    if c.amount == 1 then
-      coinImage = image.pennyHeads
-    elseif c.amount == 5 then
-      coinImage = image.nickelHeads
-    elseif c.amount == 25 then
-      coinImage = image.dimeHeads
-    elseif c.amount == 100 then
-      coinImage = image.quarterHeads
-    end
+    love.graphics.printf({{0,0,0,1},"H"}, c.x-29, c.y-19, 60, "center")
   else
-    if c.amount == 1 then
-      coinImage = image.pennyTails
-    elseif c.amount == 5 then
-      coinImage = image.nickelTails
-    elseif c.amount == 25 then
-      coinImage = image.dimeTails
-    elseif c.amount == 100 then
-      coinImage = image.quarterTails
-    end
+    love.graphics.printf({{0,0,0,1},"T"}, c.x-29, c.y-19, 60, "center")
   end
-  love.graphics.draw(coinImage, c.x-30, c.y-30)
 end
 
 coin.update = function (c)
