@@ -11,7 +11,7 @@ local track1 = love.audio.newSource("music/bgm.mp3", "stream")
 track1:setLooping(true)
 
 mainMenu.load = function()
-  track1:play()
+  --track1:play()
 end
 
 local bg_offset_w = 0

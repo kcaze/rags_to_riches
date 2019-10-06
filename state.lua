@@ -37,6 +37,11 @@ state.draw = function (currentTurn)
   love.graphics.print("Coins: " .. state.coins, 5, 20)
   love.graphics.print("HP: " .. state.hp, 5, 40)
 
+  local itemCounters = {}
+  for i = 1, #state.items do
+    love.graphics.draw(state.items[i].image, 50+i*30, 5,0, 30/200,30/200)
+  end
+
   if state.gameOver then
     state.drawGameOver(currentTurn)
     return
