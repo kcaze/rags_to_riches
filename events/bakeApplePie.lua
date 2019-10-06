@@ -4,7 +4,7 @@ local image = require("../image")
 
 return {
     name = "Bake an apple pie",
-    amount = 25,
+    amount = 5,
     condition = function (state)
         return table.count(state.items, items.apple) >= 5
     end,
