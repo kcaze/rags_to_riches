@@ -6,7 +6,7 @@ local image = require('image')
 local savefile = require('savefile')
 
 local state = {}
-state.initializeState = function()
+state.initializeState = function(shouldLoad)
   state.hp = 30
   state.coins = 100
   state.items = {}
@@ -16,7 +16,7 @@ state.initializeState = function()
   state.ratsSold = 0
   state.appleFestival = 0
   state.gameOver = false
-  state.newTurn(state)
+  state.newTurn(state, shouldLoad)
 end
 
 local bg = 0
@@ -213,8 +213,8 @@ state.mousepressed = function(currentTurn, mx,my)
     end
   end
   if turnDone == true and mx >= (800-100-5) and mx <= 800-5 and my <= 600 and my >= (600-30) then
-    state.newTurn(state)
     state.day = state.day + 1
+    state.newTurn(state)
   end
 
   if state.gameOver then
@@ -268,7 +268,7 @@ pickEvent = function(possible)
   return possible.events[#possible.events]
 end
 
-state.newTurn = function(state)
+state.newTurn = function(state, shouldLoad)
   bg = love.math.random(8)
   local turn = {
     coins = {}
@@ -276,9 +276,10 @@ state.newTurn = function(state)
   
   if state.hp <= 0 then
     state.gameOver = true
-  else 
+  elseif shouldLoad then
+    savefile.load(state)
+  else
     possible = getEvents(state)
-  
     for i = 1,3 do
       table.insert(turn, {
                     event = pickEvent(possible),
@@ -287,9 +288,10 @@ state.newTurn = function(state)
                     y = 80,
       })
     end
+    state.currentTurn = turn
   end
-  state.currentTurn = turn
   savefile.save(state)
+  savefile.load(state)
 end
 
 return state
