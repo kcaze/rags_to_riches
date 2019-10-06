@@ -85,9 +85,22 @@ event.mousepressed = function (state, obj, mx, my)
   end
 end
 
+event.printEventTable = function ()
+  for i, e in ipairs(event.allEvents) do
+    print(e.name
+            .. ';' .. e.description
+            .. ';' .. e.heads.effectDescription 
+            .. ';' .. e.tails.effectDescription
+            .. ';' .. e.beg.effectDescription
+    )
+  end
+end
+
 -- Load all events.
 for i, name in ipairs(love.filesystem.getDirectoryItems('events')) do
-  table.insert(event.allEvents, require("events/" .. string.gsub(name, "(.*)%.(.*)", "%1")))
+  e = require("events/" .. string.gsub(name, "(.*)%.(.*)", "%1"))
+  table.insert(event.allEvents, e)
 end
+
 
 return event
