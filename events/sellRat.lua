@@ -42,7 +42,7 @@ return {
     end
   },
   beg = {
-    effectDescription = "-1 rat and +6 coins (20%), -2 hp",
+    effectDescription = "-1 rat and +6 coins (20%), -2 hp (80%)",
     effect = function (state)
       local p = love.math.random()
       if p < 0.2 then
