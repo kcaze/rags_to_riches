@@ -3,7 +3,7 @@ local coin = require('coin')
 local event = require('event')
 local state = {
   hp=100,
-  coins=100,
+  coins=1000,
   items={}, 
   day = 1,
   draw = draw,
@@ -16,48 +16,86 @@ state.draw = function (currentTurn)
   love.graphics.print("Coins: " .. state.coins, 0, 20)
   love.graphics.print("HP: " .. state.hp, 0, 40)
 
+  local semiBlack = {0,0,0,0.75}
+  local black = {0,0,0,1}
   if state.coins >= 1 then
-    love.graphics.setColor({1,1,1,1})
-    love.graphics.rectangle('fill', 0, 575, 80, 25)
-    if love.mouse.getX() >= 0 and love.mouse.getX() <= 80 and love.mouse.getY() <= 600 and love.mouse.getY() >= 575 and state.coins > 0 then
-      love.graphics.setColor({1,0,0,1})
+    if love.mouse.getX() >= 0 and love.mouse.getX() <= 80 and love.mouse.getY() < 600 and love.mouse.getY() >= 575 and state.coins >= 1 then
+      love.graphics.setColor({144/255*0.5,105/255*0.5,63/255*0.5,1})
+      love.graphics.rectangle('fill', 0, 575, 80, 25, 6, 6, 50)
+      love.graphics.setColor(black)
+      love.graphics.setNewFont("font.ttf", 16):setLineHeight(0.75)
+      love.graphics.printf('FLIP $1', 0, 575, 80, 'center')
     else 
-      love.graphics.setColor({0,0,0,1})
+      love.graphics.setColor({144/255,105/255,63/255,1})
+      love.graphics.rectangle('fill', 0, 575, 80, 25, 6, 6, 50)
+      love.graphics.setColor(semiBlack)
+      love.graphics.setNewFont("font.ttf", 16):setLineHeight(0.75)
+      love.graphics.printf('FLIP $1', 0, 575, 80, 'center')
     end
-    love.graphics.print('FLIP $1', 0, 575,0,1.5,1.5)
   end
 
   if state.coins >= 5 then
-    love.graphics.setColor({1,1,1,1})
-    love.graphics.rectangle('fill', 0, 575-25, 80, 25)
-    if love.mouse.getX() >= 0 and love.mouse.getX() <= 80 and love.mouse.getY() < 575 and love.mouse.getY() >= 550 and state.coins > 0 then
-      love.graphics.setColor({1,0,0,1})
+    if love.mouse.getX() >= 0 and love.mouse.getX() <= 80 and love.mouse.getY() < 575 and love.mouse.getY() >= 550 and state.coins >= 5 then
+      love.graphics.setColor({140/255*0.5,140/255*0.5,140/255*0.5,1})
+      love.graphics.rectangle('fill', 0, 550, 80, 25, 6, 6, 50)
+      love.graphics.setColor(black)
+      love.graphics.setNewFont("font.ttf", 16):setLineHeight(0.75)
+      love.graphics.printf('FLIP $5', 0, 550, 80, 'center')
     else 
-      love.graphics.setColor({0,0,0,1})
+      love.graphics.setColor({140/255,140/255,140/255,1})
+      love.graphics.rectangle('fill', 0, 550, 80, 25, 6, 6, 50)
+      love.graphics.setColor(semiBlack)
+      love.graphics.setNewFont("font.ttf", 16):setLineHeight(0.75)
+      love.graphics.printf('FLIP $5', 0, 550, 80, 'center')
     end
-    love.graphics.print('FLIP $5', 0, 550,0,1.5,1.5)
-  end 
-
-  if state.coins >= 10 then
-    love.graphics.setColor({1,1,1,1})
-    love.graphics.rectangle('fill', 0, 575-2*25, 80, 25)
-    if love.mouse.getX() >= 0 and love.mouse.getX() <= 80 and love.mouse.getY() < 550 and love.mouse.getY() >= 525 and state.coins > 0 then
-      love.graphics.setColor({1,0,0,1})
-    else 
-      love.graphics.setColor({0,0,0,1})
-    end
-    love.graphics.print('FLIP $10', 0, 525,0,1.5,1.5)
   end
 
   if state.coins >= 25 then
-    love.graphics.setColor({1,1,1,1})
-    love.graphics.rectangle('fill', 0, 575-3*25, 80, 25)
-    if love.mouse.getX() >= 0 and love.mouse.getX() <= 80 and love.mouse.getY() < 525 and love.mouse.getY() >= 500 and state.coins > 0 then
-      love.graphics.setColor({1,0,0,1})
+    if love.mouse.getX() >= 0 and love.mouse.getX() <= 80 and love.mouse.getY() < 550 and love.mouse.getY() >= 525 and state.coins >= 25 then
+      love.graphics.setColor({191/255*0.5,196/255*0.5,196/255*0.5,1})
+      love.graphics.rectangle('fill', 0, 525, 80, 25, 6, 6, 50)
+      love.graphics.setColor(black)
+      love.graphics.setNewFont("font.ttf", 16):setLineHeight(0.75)
+      love.graphics.printf('FLIP $25', 0, 525, 80, 'center')
     else 
-      love.graphics.setColor({0,0,0,1})
+      love.graphics.setColor({191/255,196/255,196/255,1})
+      love.graphics.rectangle('fill', 0, 525, 80, 25, 6, 6, 50)
+      love.graphics.setColor(semiBlack)
+      love.graphics.setNewFont("font.ttf", 16):setLineHeight(0.75)
+      love.graphics.printf('FLIP $25', 0, 525, 80, 'center')
     end
-    love.graphics.print('FLIP $25', 0, 500,0,1.5,1.5)
+  end
+
+  if state.coins >= 100 then
+    if love.mouse.getX() >= 0 and love.mouse.getX() <= 80 and love.mouse.getY() < 525 and love.mouse.getY() >= 500 and state.coins >= 100 then
+      love.graphics.setColor({223/255*0.5,175/255*0.5,62/255*0.5,1})
+      love.graphics.rectangle('fill', 0, 500, 80, 25, 6, 6, 50)
+      love.graphics.setColor(black)
+      love.graphics.setNewFont("font.ttf", 16):setLineHeight(0.75)
+      love.graphics.printf('FLIP $100', 0, 500, 80, 'center')
+    else 
+      love.graphics.setColor({223/255,175/255,62/255,1})
+      love.graphics.rectangle('fill', 0, 500, 80, 25, 6, 6, 50)
+      love.graphics.setColor(semiBlack)
+      love.graphics.setNewFont("font.ttf", 16):setLineHeight(0.75)
+      love.graphics.printf('FLIP $100', 0, 500, 80, 'center')
+    end
+  end
+
+  if state.coins >= 1000 then
+    if love.mouse.getX() >= 0 and love.mouse.getX() <= 80 and love.mouse.getY() < 500 and love.mouse.getY() >= 475 and state.coins >= 1000 then
+      love.graphics.setColor({216/255*0.5,181/255*0.5,181/255*0.5,1})
+      love.graphics.rectangle('fill', 0, 475, 80, 25, 6, 6, 50)
+      love.graphics.setColor(black)
+      love.graphics.setNewFont("font.ttf", 16):setLineHeight(0.75)
+      love.graphics.printf('FLIP $1000', 0, 475, 80, 'center')
+    else 
+      love.graphics.setColor({216/255,181/255,181/255,1})
+      love.graphics.rectangle('fill', 0, 475, 80, 25, 6, 6, 50)
+      love.graphics.setColor(semiBlack)
+      love.graphics.setNewFont("font.ttf", 16):setLineHeight(0.75)
+      love.graphics.printf('FLIP $1000', 0, 475, 80, 'center')
+    end
   end
   
   local turnDone = true
@@ -89,14 +127,19 @@ state.mousepressed = function(currentTurn, mx,my)
     table.insert(currentTurn.coins, coin.new(state, 5))
   end 
 
-  if mx >= 0 and mx <= 80 and my < 550 and my >= 525 and state.coins >= 10 then
-    state.coins = state.coins - 10 
-    table.insert(currentTurn.coins, coin.new(state, 10))
-  end 
-
-  if mx >= 0 and mx <= 80 and my < 525 and my >= 500 and state.coins >= 25 then
+  if mx >= 0 and mx <= 80 and my < 550 and my >= 525 and state.coins >= 25 then
     state.coins = state.coins - 25 
     table.insert(currentTurn.coins, coin.new(state, 25))
+  end 
+
+  if mx >= 0 and mx <= 80 and my < 525 and my >= 500 and state.coins >= 100 then
+    state.coins = state.coins - 100 
+    table.insert(currentTurn.coins, coin.new(state, 100))
+  end 
+
+  if mx >= 0 and mx <= 80 and my < 500 and my >= 475 and state.coins >= 1000 then
+    state.coins = state.coins - 1000 
+    table.insert(currentTurn.coins, coin.new(state, 1000))
   end 
   
 
