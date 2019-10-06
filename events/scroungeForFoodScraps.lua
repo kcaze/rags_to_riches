@@ -7,7 +7,7 @@ return {
   condition = function (state)
     return state.coins < 10 
   end,
-  description = "You search the dumpsters for something edible.",
+  description = "There is a sketchy looking dumpster on your right. Maybe you can find something to eat?",
   heads = {
     effectDescription = "+1 hp +2 coin (50%), -3 hp (30%), +5 coin (20%)",
     effect = function (state)

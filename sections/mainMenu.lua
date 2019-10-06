@@ -7,7 +7,11 @@ local font = require("../font")
 local savefile = require("../savefile")
 local mainMenu = {}
 
+local track1 = love.audio.newSource("music/bgm.mp3", "stream") 
+track1:setLooping(true)
+
 mainMenu.load = function()
+  track1:play()
 end
 
 local bg_offset_w = 0
