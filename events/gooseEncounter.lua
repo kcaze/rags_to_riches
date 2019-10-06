@@ -2,13 +2,13 @@ require('utils')
 local image = require("../image")
 
 return {
-  name = "Meet an untitled goose",
+  name = "An Untitled Goose",
   amount = 5,
   weight = 0.2,
   condition = function (state)
     return state.coins >= 5
   end,
-  description = "The mischievous goose honks at you.",
+  description = "You see an mischievous untitled goose. It honks at you. HONK!",
   heads = {
     effectDescription = "+25 coin (30%)",
     effect = function (state)
