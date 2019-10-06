@@ -2,27 +2,34 @@ local state = require("state")
 local music = require("music")
 local event = require("event")
 local coin = require("coin")
+local image = require("image")
 state.newTurn(state)
 
 function love.load()
   love.window.setMode(800,600,{highdpi = true})
   love.graphics.setNewFont("font.ttf", 18):setLineHeight(0.6)
+  for i = 1, 8 do
+    local bg = image['bg'..i]
+    bg:setWrap("repeat", "repeat")
+    image['bg'..i..'Quad'] = love.graphics.newQuad(0,0,800,600,bg:getWidth(),bg:getHeight())
+  end
 
   music.track1:setLooping(true)
   -- music.track1:play()
 end
 
 function love.draw()
+  state.draw(state.currentTurn)
   for i = 1,3 do
     event.draw(state.currentTurn[i])
   end
-  state.draw(state.currentTurn)
   for i = 1, #state.currentTurn.coins do
     coin.draw(state.currentTurn.coins[i])
   end
 end
 
-function love.update()
+function love.update(dt)
+  state.update(dt)
   for i = 1, #state.currentTurn.coins do
     coin.update(state.currentTurn.coins[i])
   end

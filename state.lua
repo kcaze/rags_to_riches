@@ -1,6 +1,7 @@
 local inspect = require('inspect')
 local coin = require('coin')
 local event = require('event')
+local image = require('image')
 local state = {
   hp=100,
   coins=1000,
@@ -10,8 +11,19 @@ local state = {
   ratLevel = 0
 }
 
+local bg = 0
+bg_offset_w = 0
+bg_offset_h = 0
+
+state.update = function (dt)
+  bg_offset_w = (bg_offset_w - 3*dt)%image['bg'..bg]:getWidth()
+  bg_offset_h = (bg_offset_h + 3*dt)%image['bg'..bg]:getHeight()
+  image['bg'..bg..'Quad']:setViewport(bg_offset_w,bg_offset_h,800,600,image['bg'..bg]:getWidth(),image['bg'..bg]:getHeight())
+end
+
 state.draw = function (currentTurn)
   love.graphics.setColor(1,1,1,1)
+  love.graphics.draw(image['bg'..bg], image['bg'..bg..'Quad'], 0, 0)
   love.graphics.print("Day: " .. state.day, 0, 0)
   love.graphics.print("Coins: " .. state.coins, 0, 20)
   love.graphics.print("HP: " .. state.hp, 0, 40)
@@ -196,6 +208,7 @@ pickEvent = function(possible)
 end
 
 state.newTurn = function(state)
+  bg = love.math.random(8)
   local turn = {
     coins = {}
   }
