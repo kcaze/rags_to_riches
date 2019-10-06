@@ -51,6 +51,7 @@ event.draw = function (obj)
     love.graphics.setColor(0,0,0,1)
     love.graphics.setNewFont("font.ttf", 18):setLineHeight(0.75)
     love.graphics.printf({black,"Beg"}, x+226/2-30, y+290, 60, "center")
+    love.graphics.printf({semiBlack, "$"..e.amount}, x+10, y+310, width, "right")
   elseif obj.used == 'beg' then
     love.graphics.setNewFont("font.ttf", 16):setLineHeight(0.75)
     love.graphics.printf({semiBlack, obj.description}, x+13, y+55, width)
