@@ -7,8 +7,8 @@ local savefile = require('savefile')
 
 local state = {}
 state.initializeState = function(shouldLoad)
-  state.hp = 30
-  state.coins = 100
+  state.hp = 20
+  state.coins = 0
   state.items = {}
   state.day = 1
   state.happiness = 0

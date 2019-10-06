@@ -35,7 +35,7 @@ return {
         table.delete(state.items, items.applePie)
         return {
           description = 'The mob overwhelms you and they eat your apple pie.',
-          image = image.sad
+          image = image.bad
         }
     end
     }
