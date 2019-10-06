@@ -1,12 +1,12 @@
 require('utils')
 local image = require("../image");
-local item = requre("../item")
+local item = require("../item")
 
 return {
   name = "Eat an apple",
   amount = 1,
   condition = function (state)
-     table.contains(state.items, item.apple)
+     return table.contains(state.items, item.apple)
   end,
   description = "There is a tasty apple in your pocket. You admire it carefully, considering whether or not to eat it.",
   heads = {

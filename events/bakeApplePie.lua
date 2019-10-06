@@ -1,12 +1,12 @@
 require('utils')
-local image = require("../image");
-local items = require("../item")
+local items = require("../item");
+local image = require("../image")
 
 return {
     name = "Bake an apple pie",
-    amount = 10,
+    amount = 25,
     condition = function (state)
-       table.count(state.items, items.apple) >= 5
+        return table.count(state.items, items.apple) >= 5
     end,
     description = "You have enough apples to bake an apple pie.",
     heads = {
