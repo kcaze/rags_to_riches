@@ -27,3 +27,12 @@ function table.delete(tab, element)
   return false
 end
 
+function table.count(tab, element)
+  local c = 0
+  for num, value in pairs(tab) do
+    if value == element then
+      c = c + 1
+    end
+  end
+  return c
+end

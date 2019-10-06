@@ -3,6 +3,7 @@ local font = require('font')
 local coin = require('coin')
 local event = require('event')
 local image = require('image')
+local savefile = require('savefile')
 
 local state = {}
 state.initializeState = function()
@@ -288,6 +289,7 @@ state.newTurn = function(state)
     end
   end
   state.currentTurn = turn
+  --savefile.save(state)
 end
 
 return state
