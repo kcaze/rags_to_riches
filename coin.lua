@@ -21,9 +21,9 @@ coin.draw = function (c)
       coinImage = image.pennyHeads
     elseif c.amount == 5 then
       coinImage = image.nickelHeads
-    elseif c.amount == 10 then
-      coinImage = image.dimeHeads
     elseif c.amount == 25 then
+      coinImage = image.dimeHeads
+    elseif c.amount == 100 then
       coinImage = image.quarterHeads
     end
   else
@@ -31,9 +31,9 @@ coin.draw = function (c)
       coinImage = image.pennyTails
     elseif c.amount == 5 then
       coinImage = image.nickelTails
-    elseif c.amount == 10 then
-      coinImage = image.dimeTails
     elseif c.amount == 25 then
+      coinImage = image.dimeTails
+    elseif c.amount == 100 then
       coinImage = image.quarterTails
     end
   end
@@ -55,8 +55,8 @@ coin.mousereleased = function (state, currentTurn, c, mx, my)
   if c.dragging == true then
     for i = 1,3 do
       local obj = currentTurn[i]
-      local circleX = obj.x+200/2
-      local circleY = obj.y+250
+      local circleX = obj.x+226/2
+      local circleY = obj.y+305
       if (obj.used == false) and obj.event.amount <= c.amount and (math.sqrt(math.pow(mx - circleX, 2) + math.pow(my - circleY, 2)) <= 40) then
         if c.value == 'heads' then
           local outcome = obj.event.heads.effect(state)

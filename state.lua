@@ -160,8 +160,8 @@ state.newTurn = function(state)
     table.insert(turn, {
                    event = pickEvent(possible),
                    used = false,
-                   x = 50 + (i-1)*250,
-                   y = 100,
+                   x = 20 + (i-1)*(226 + 41),
+                   y = 80,
     })
   end
   state.currentTurn = turn

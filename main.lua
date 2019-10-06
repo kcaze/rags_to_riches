@@ -5,8 +5,11 @@ local coin = require("coin")
 state.newTurn(state)
 
 function love.load()
+  love.window.setMode(800,600,{highdpi = true})
+  love.graphics.setNewFont("font.ttf", 18):setLineHeight(0.6)
+
   music.track1:setLooping(true)
-  music.track1:play()
+  -- music.track1:play()
 end
 
 function love.draw()
