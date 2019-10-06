@@ -105,14 +105,17 @@ state.draw = function (currentTurn)
     end
   end
   if turnDone == true then
-    love.graphics.setColor({1,1,1,1})
-    love.graphics.rectangle('fill', 800-150, 550, 150, 50)
-    if love.mouse.getX() >= (800-150) and love.mouse.getX() <= 800 and love.mouse.getY() <= 600 and love.mouse.getY() >= 550 then
-      love.graphics.setColor({1,0,0,1})
+    if love.mouse.getX() >= (800-100) and love.mouse.getX() <= 800 and love.mouse.getY() <= 600 and love.mouse.getY() >= (600-30) then
+      love.graphics.setColor({43/255*0.5,181/255*0.5,102/255*0.5,1})
+      love.graphics.rectangle('fill', 800-100, 600-30, 100, 30, 6, 6, 50)
+      love.graphics.setNewFont("font.ttf", 24):setLineHeight(0.75)
+      love.graphics.printf({{0,0,0,1},'NEXT'}, 800-100, 600-35,100,'center')
     else 
-      love.graphics.setColor({0,0,0,1})
+      love.graphics.setColor({43/255,181/255,102/255,1})
+      love.graphics.rectangle('fill', 800-100, 600-30, 100, 30, 6, 6, 50)
+      love.graphics.setNewFont("font.ttf", 24):setLineHeight(0.75)
+      love.graphics.printf({{0,0,0,0.75},'NEXT'}, 800-100, 600-35,100,'center')
     end
-    love.graphics.print('NEXT', 800-150+40, 555,0,2.5,2.5)
   end
 end
 
@@ -149,7 +152,7 @@ state.mousepressed = function(currentTurn, mx,my)
       turnDone = false
     end
   end
-  if turnDone == true and mx >= (800-150) and mx <= 800 and my <= 600 and my >= 550 then
+  if turnDone == true and mx >= (800-100) and mx <= 800 and my <= 600 and my >= (600-30) then
     state.newTurn(state)
     state.day = state.day + 1
   end
