@@ -49,11 +49,16 @@ state.draw = function (currentTurn)
   font.setFont(16)
   love.graphics.print("Inventory:", 100,2)
   local idx = 0
+  local mx = love.mouse.getX()
+  local my = love.mouse.getY()
   for itemObj, itemNum in pairs(itemCounters) do
     idx = idx + 1
-    love.graphics.draw(itemObj.image, 120+idx*45, 25,0, 40/200,40/200)
+    love.graphics.draw(itemObj.image, 125+idx*50,5,0, 40/200,40/200)
     font.setFont(16)
-    love.graphics.printf(itemNum, 120+idx*45,5,40,"right")
+    love.graphics.printf(itemNum, 125+idx*50,-2,40,"right")
+    if mx >= 120+idx*50 and mx <= 125+idx*50+40 and my >= 5 and my < 5+40 then
+      love.graphics.printf(itemObj.name .. ' - ' .. itemObj.description, 800/2-600/2,50,600,"center")
+    end
   end
 
   if state.gameOver then
