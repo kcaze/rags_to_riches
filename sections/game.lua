@@ -7,7 +7,7 @@ local game = {}
 
 game.load = function()
   state.initializeState()
-  event.printEventTable()
+  --event.printEventTable()
 end
 
 game.draw = function ()

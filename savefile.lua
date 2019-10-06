@@ -5,7 +5,7 @@ local item = require("item")
 local savefile = {}
 
 savefile.save = function (state)
-  local picklableState = state
+  local picklableState = {}
   local methods = {
     "initializeState",
     "update",
@@ -37,8 +37,11 @@ function serializeItems(items)
   end
   local serializedItems = {}
   for i = 1, #items do
+    print(invertedItem[items[i]])
     table.insert(serializedItems, invertedItem[items[i]])
   end
+  print(pickle.pickle(serializedItems))
+  return serializedItems
 end
 
 return savefile

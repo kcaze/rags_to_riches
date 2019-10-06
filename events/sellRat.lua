@@ -1,19 +1,19 @@
 require('utils')
-local rat = require("../items/rat");
+local item = require("../item")
 local image = require("../image")
 
 return {
   name = "Sell a rat",
   amount = 1,
   condition = function (state)
-    return table.contains(state.items, rat) and state.ratLevel >= 1
+    return table.contains(state.items, item.rat) and state.ratLevel >= 1
   end,
   description = "You have a rat to sell!",
   heads = {
     effectDescription = "-1 rat, +25 coins (25%) -1 rat (75%)",
     effect = function (state)
       local p = love.math.random()
-      table.delete(state.items, rat)
+      table.delete(state.items, item.rat)
       state.ratsSold = state.ratsSold + 1
       if p < 0.25 then
         state.coins = state.coins + 25
@@ -33,7 +33,7 @@ return {
     effectDescription = "-1 rat, +3 coins",
     effect = function (state)
       state.coins = state.coins + 3
-      table.delete(state.items, rat)
+      table.delete(state.items, item.rat)
       state.ratsSold = state.ratsSold + 1
       return {
         description = [[You sell the rat to the olde pet shop for 3 coins.]],
@@ -46,7 +46,7 @@ return {
     effect = function (state)
       local p = love.math.random()
       if p < 0.2 then
-        table.delete(state.items, rat)
+        table.delete(state.items, item.rat)
         state.ratsSold = state.ratsSold + 1
         state.coins = state.coins + 6
         return {

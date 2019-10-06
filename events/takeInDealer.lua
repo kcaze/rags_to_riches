@@ -1,5 +1,4 @@
-local rat = require("../items/rat");
-local dealer = require("../items/dealer");
+local item = require("../item")
 local image = require("../image")
 
 return {
@@ -16,8 +15,8 @@ return {
       local p = love.math.random()
       if p < 0.5 then
         state.ratsSold = state.ratsSold + 8
-        table.insert(state.items, dealer)
-        table.insert(state.items, dealer)
+        table.insert(state.items, item.dealer)
+        table.insert(state.items, item.dealer)
         return {
           description = [[You pitch like crazy to the person... and they are convinced. So convinced that they rope their friend into it too. You get 2 dealers.]],
           image = image.placeholder,
@@ -36,7 +35,7 @@ return {
       local p = love.math.random()
       if p < 0.8 then
         state.ratsSold = state.ratsSold + 4
-        table.insert(state.items, dealer)
+        table.insert(state.items, item.dealer)
         return {
           description = [[You convince one person to join you as a dealer! Yay!]],
           image = image.placeholder,
@@ -61,7 +60,7 @@ return {
           image = image.rat,
         }
       else
-        table.insert(state.items, rat)
+        table.insert(state.items, item.rat)
         return {
           description = [[The person leaves before you get there. A rat jumps out and into your arms. It's friendly.. and ready to be sold.]],
           image = image.rat,

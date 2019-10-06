@@ -1,5 +1,4 @@
-local rat = require("../items/rat");
-local apple = require("../items/apple");
+local item = require("../item")
 local image = require("../image")
 
 return {
@@ -18,7 +17,7 @@ return {
       local p = love.math.random()
       if p < 0.5 then
         -- 1 rat
-        table.insert(state.items, rat)
+        table.insert(state.items, item.rat)
         return {
           description = [[You take the rat to the doctor, it's healed! You get one rat.]],
           image = image.rat
@@ -36,7 +35,7 @@ return {
     effect = function (state)
       if p < 0.5 then
         -- 1 apple
-        table.insert(state.items, apple) 
+        table.insert(state.items, item.apple) 
         return {
           description = [[You run away but the rat follows you. You lose it by hiding behind a tree. You find an apple.]],
           image = image.apple

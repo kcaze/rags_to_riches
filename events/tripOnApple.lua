@@ -1,15 +1,15 @@
-local apple = require("../items/apple");
+local item = require("../item");
 local image = require("../image")
 
 return {
   name = "Find an apple",
   amount = 1,
-  weight = 0.1,
+  weight = 10000,
   description = "A round shiny apple lies on the ground. You bend down to pick it up.",
   heads = {
     effectDescription = "Obtain an 'Apple'",
     effect = function (state)
-      table.insert(state.items, apple)
+      table.insert(state.items, item.apple)
       return {
         description = "You pick up the apple. You are no longer afraid of doctors.",
         image = image.apple,

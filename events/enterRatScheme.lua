@@ -1,4 +1,4 @@
-local rat = require("../items/rat");
+local item = require("../item");
 local image = require("../image")
 
 return {
@@ -13,7 +13,7 @@ return {
     effectDescription = "+4 rats",
     effect = function (state)
       for i = 1,4 do
-        table.insert(state.items, rat)
+        table.insert(state.items, item.rat)
       end
       state.ratLevel = 1
       return {

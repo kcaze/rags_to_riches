@@ -8,7 +8,7 @@ local savefile = require('savefile')
 local state = {}
 state.initializeState = function()
   state.hp = 30
-  state.coins = 0
+  state.coins = 100
   state.items = {}
   state.day = 1
   state.happiness = 0
@@ -289,7 +289,7 @@ state.newTurn = function(state)
     end
   end
   state.currentTurn = turn
-  --savefile.save(state)
+  savefile.save(state)
 end
 
 return state

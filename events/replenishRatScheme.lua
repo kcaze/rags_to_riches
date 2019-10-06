@@ -1,4 +1,4 @@
-local rat = require("../items/rat");
+local item = require("../item")
 local image = require("../image")
 
 return {
@@ -13,7 +13,7 @@ return {
     effectDescription = "+4 rats",
     effect = function (state)
       for i = 1,4 do
-        table.insert(state.items, rat)
+        table.insert(state.items, item.rat)
       end
       return {
         description = "The man hands you 4 rats. Now go and sell these rats",
@@ -26,7 +26,7 @@ return {
     effect = function (state)
       local p = love.math.random()
       if p < 0.5 then
-        table.insert(state.items, rat)
+        table.insert(state.items, item.rat)
         return {
           description = [[The man hands you 4 rats... but only 1 of them is real! You try to demand your money back, but he's already gone...]],
           image = image.placeholder,
