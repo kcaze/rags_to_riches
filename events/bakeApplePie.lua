@@ -6,7 +6,7 @@ return {
     name = "Bake an apple pie",
     amount = 5,
     condition = function (state)
-        return table.count(state.items, items.apple) >= 5
+        return table.count(state.items, items.apple) >= 5 and state.appleFestival == 0
     end,
     description = "You have enough apples to bake an apple pie.",
     heads = {
