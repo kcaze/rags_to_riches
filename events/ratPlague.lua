@@ -3,7 +3,7 @@ local image = require("../image")
 
 return {
   name = "The plague strikes",
-  amount = 5,
+  amount = 1,
   weight = function (state)
     return state.ratsSold / 30
   end,
@@ -34,6 +34,7 @@ return {
   tails = {
     effectDescription = "+1 apple (50%) -5 hp (50%)",
     effect = function (state)
+      local p = love.math.random()
       if p < 0.5 then
         -- 1 apple
         table.insert(state.items, item.apple) 
@@ -53,6 +54,7 @@ return {
   beg = {
     effectDescription = "-100 hp (10%), -15 hp (90%)",
     effect = function (state)
+      local p = love.math.random()
       if p < 0.1 then
         state.hp = state.hp - 100
         return {

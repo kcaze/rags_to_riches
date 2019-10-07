@@ -6,7 +6,7 @@ return {
   amount = 5,
   weight = 0.5,
   condition = function (state)
-    return state.coins >= 5 and state.ratLevel == 1
+    return state.coins >= 5 and state.ratLevel >= 1
   end,
   description = "The sketchy trenchcoat man returns. For only $5, you may get 4 more rats to sell.",
   heads = {
@@ -32,11 +32,21 @@ return {
           image = image.rat,
         }
       else
-        state.ratLevel = 2
-        return {
-          description = [[The man approaches you closer and whispers, "how would you like to join the rat gang?" You agree, and graduate to a level 2 rat dealer!]],
-          image = image.dealer
-        }
+        if state.ratLevel == 1 then
+          state.ratLevel = 2
+          return {
+            description = [[The man approaches you closer and whispers, "how would you like to join the rat gang?" You agree, and graduate to a level 2 rat dealer!]],
+            image = image.dealer
+          }
+        else
+          for i = 1,4 do
+            table.insert(state.items, item.rat)
+          end
+          return {
+            description = [[The man looks at you. "I thought you've moved up from dealing rats..?" He says as he hands you 4 rats anyway.]],
+            image = image.rat4,
+          }
+        end
       end
     end
   },
