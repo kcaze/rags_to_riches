@@ -14,7 +14,8 @@ return {
       state.hp = state.hp + 3
       return {
         description = "The vender generously hands you a loaf of bread that you immediately scarf down. You gain 3 hp.",
-        image = image.placeholder
+        image = image.placeholder,
+        win = true
       }
     end
   },
