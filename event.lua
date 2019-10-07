@@ -12,7 +12,7 @@ cardBackground[100] = image.card100
 cardBackground[1000] = image.card1000
 
 -- Draw event e.
-event.draw = function (obj, scale)
+event.draw = function (obj, transform)
   local x = obj.x
   local y = obj.y
   local e = obj.event
@@ -20,8 +20,8 @@ event.draw = function (obj, scale)
   local semiBlack = {0,0,0,0.75}
   local width = 200
   local height = 300
-  local mouseX = love.mouse.getX() / scale
-  local mouseY = love.mouse.getY() / scale
+  local mouseX = (love.mouse.getX() - transform.dx) / transform.scale
+  local mouseY = (love.mouse.getY() - transform.dy) / transform.scale
   love.graphics.setColor(1,1,1,1)
   love.graphics.draw(cardBackground[e.amount], x, y)
   font.setFont(24)
