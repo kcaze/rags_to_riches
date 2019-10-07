@@ -89,11 +89,13 @@ end
 
 event.printEventTable = function ()
   for k, e in pairs(event.allEvents) do
-    print(e.name
-            .. ';' .. e.description
-            .. ';' .. e.heads.effectDescription 
-            .. ';' .. e.tails.effectDescription
-            .. ';' .. e.beg.effectDescription
+    print(
+      e.amount
+        .. ';' .. e.name
+        .. ';' .. e.description
+        .. ';' .. e.heads.effectDescription 
+        .. ';' .. e.tails.effectDescription
+        .. ';' .. e.beg.effectDescription
     )
   end
 end
