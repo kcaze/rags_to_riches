@@ -7,14 +7,14 @@ return {
   amount = 1,
   description = "Sleeping 8 hours a day is good for you!",
   heads = {
-    effectDescription = "+3 hp, ??? (requires 'Tooth')",
+    effectDescription = "+3 hp, +5 coins (requires 'Tooth')",
     effect = function (state)
       if table.contains(state.items, item.tooth) then
         state.hp = state.hp + 3 
         state.coins = state.coins + 5 
         table.delete(state.items, item.tooth)
         return {
-          description = "Woosh! A tooth fairy appears and takes your tooth away. She leaves behind 5 coins as a result.",
+          description = "Woosh! A tooth fairy appears and takes your tooth away. She leaves behind 5 coins as a result and you heal 3 hp.",
           image = image.toothFairy
         }
       else
@@ -27,7 +27,7 @@ return {
     end
   },
   tails = {
-    effectDescription = "+3 hp, ??? (requires 'Tooth')",
+    effectDescription = "+3 hp, +7 more hp (requires 'Tooth')",
     effect = function (state)
       if table.contains(state.items, item.tooth) then
         state.hp = state.hp + 10

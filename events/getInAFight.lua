@@ -19,12 +19,12 @@ return {
     end
   },
   tails = {
-    effectDescription = "-3 hp, obtain a 'Tooth'",
+    effectDescription = "-1 hp, obtain a 'Tooth'",
     effect = function (state)
-      state.hp = state.hp - 3 
+      state.hp = state.hp - 1 
       table.insert(state.items, item.tooth)
       return {
-        description = "Ow, a strong uppercut punches into your jaw, knocking out one of your teeth and taking 3 hp.",
+        description = "Ow, a strong uppercut punches into your jaw, knocking out one of your teeth and taking 1 hp.",
         image = image.tooth
       }
     end
