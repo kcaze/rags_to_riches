@@ -5,7 +5,7 @@ local image = require("../image")
 return {
     name = "Knight's Invitation",
     amount = 5,
-    weight = 1000,
+    weight = 1,
     condition = function (state)
       return not state.knightInvited and state.coins >= 5
     end,
