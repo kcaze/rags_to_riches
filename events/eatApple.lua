@@ -5,6 +5,7 @@ local item = require("../item")
 return {
   name = "Eat an apple",
   amount = 1,
+  weight = 0.5,
   condition = function (state)
      return table.contains(state.items, item.apple)
   end,

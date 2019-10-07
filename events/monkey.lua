@@ -8,22 +8,14 @@ return {
     weight = 0.1,
     description = "A monkey looks interested in you.",
     heads = {
-      effectDescription = "20% chance of steal",
+      effectDescription = "-3 hp (20%)",
       effect = function (state)
         if love.math.random() <= 0.2 then
-            if table.contains(state.items, item.apple) then
-                table.delete(state.items, item.apple)
-                return {
-                    description = "The monkey steals your apple.",
-                    image = image.monkeyApple
-                }
-            else
-                state.hp = state.hp - 3
-                return {
-                    description = "The monkey steals your socks. Lose 3 HP.",
-                    image = image.monkeySocks
-                }
-            end
+            state.hp = state.hp - 3
+            return {
+                description = "The monkey steals your socks. Lose 3 HP.",
+                image = image.monkeySocks
+            }
         else
             return {
               description = "The monkey walks away with nothing.",
@@ -33,22 +25,14 @@ return {
     end
     },
     tails = {
-      effectDescription = "40% chance of steal",
+      effectDescription = "-3 hp (40%)",
       effect = function (state)
         if love.math.random() <= 0.4 then
-            if table.contains(state.items, item.apple) then
-                table.delete(state.items, item.apple)
-                return {
-                    description = "The monkey steals your apple.",
-                    image = image.monkeyApple
-                }
-            else
-                state.hp = state.hp - 3
-                return {
-                    description = "The monkey steals your socks. Lose 3 HP.",
-                    image = image.monkeySocks
-                }
-            end
+            state.hp = state.hp - 3
+            return {
+                description = "The monkey steals your socks. Lose 3 HP.",
+                image = image.monkeySocks
+            }
         else
             return {
               description = "The monkey walks away with nothing.",
@@ -58,22 +42,14 @@ return {
     end
     },
     beg = {
-      effectDescription = "80% chance of steal",
+      effectDescription = "-3 hp (80%)",
       effect = function (state)
         if love.math.random() <= 0.8 then
-            if table.contains(state.items, item.apple) then
-                table.delete(state.items, item.apple)
-                return {
-                    description = "The monkey steals your apple.",
-                    image = image.monkeyApple
-                }
-            else
-                state.hp = state.hp - 3
-                return {
-                    description = "The monkey steals your socks. Lose 3 HP.",
-                    image = image.monkeySocks
-                }
-            end
+            state.hp = state.hp - 3
+            return {
+                description = "The monkey steals your socks. Lose 3 HP.",
+                image = image.monkeySocks
+            }
         else
             return {
               description = "The monkey walks away with nothing.",

@@ -13,8 +13,8 @@ return {
     heads = {
       effectDescription = "You don't have an apple. Fight the stranger",
       effect = function (state)
+        state.appleFestival = state.appleFestival + 1
         if love.math.random() <= state.hp * 0.01 then
-            state.appleFestival = state.appleFestival + 1
             return {
               description = "You handily win the fight. The stranger runs away.",
               image = image.stranger
@@ -31,6 +31,7 @@ return {
     tails = {
       effectDescription = "You don't have an apple. Beg for your life",
       effect = function (state)
+        state.appleFestival = state.appleFestival + 1
         state.hp = state.hp - 10
         return {
           description = 'The stranger hits you with a spell, but decides to spare your life. You lose 10 HP.',
@@ -41,9 +42,9 @@ return {
     beg = {
       effectDescription = "Appease the stranger with an apple",
       effect = function (state)
+        state.appleFestival = state.appleFestival + 1
         if table.contains(state.items, item.apple) then
             table.delete(state.items, item.apple)
-            state.appleFestival = state.appleFestival + 1
             return {
               description = "The stranger is appeased. For now.",
               image = image.apple

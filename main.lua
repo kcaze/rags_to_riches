@@ -23,6 +23,7 @@ function love.load()
                       600*screenTransform.scale,
                       {highdpi = true, resizable = true})
   love.filesystem.setIdentity('beggars-can-be-choosers')
+  love.window.setTitle("Beggars Can Be Choosers")
   switchSection('mainMenu')
 end
 
