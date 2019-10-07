@@ -49,12 +49,12 @@ return {
     end
     },
     beg = {
-      effectDescription = "-15 hp",
+      effectDescription = "-25 hp",
       effect = function (state)
-        state.hp = state.hp - 15
+        state.hp = state.hp - 25
         return {
           description = 'The attack failed spectacularly and you are grievously injured in the process.',
-          image = image.bad
+          image = image.blood
         }
     end
     }
