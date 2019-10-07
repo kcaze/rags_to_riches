@@ -58,7 +58,7 @@ return {
         state.hp = state.hp - 1
         return {
           description = "You toss and turn in your sleep as a nightmare haunts you and lose 1 hp.",
-          image = image.placeholder
+          image = image.bad
         }
       end
     end

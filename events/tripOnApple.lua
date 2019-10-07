@@ -22,7 +22,7 @@ return {
       state.coins = state.coins + 2
       return {
         description = "You trip on the apple but with your amazing acrobatics, you safely land on the ground. A passerby applauds you and donates 2 coins.",
-        image = image.placeholder,
+        image = image.plus2,
       }
     end
   },
@@ -32,7 +32,7 @@ return {
       state.hp = state.hp - 1
       return {
         description = "You trip on the apple. It rolls away and you are left with a sore behind.",
-        image = image.placeholder,
+        image = image.bad,
       }
     end
   }

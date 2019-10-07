@@ -27,8 +27,8 @@ return {
     effect = function (state)
       state.coins = state.coins + 10
       return {
-        description = [[You are angry at the suggestion. "I will NOT join your rat scheme!" you say as you punch the guy. He runs away, but leaves 10 coins behind in his confusion.]],
-        image = image.placeholder,
+        description = [["I will NOT join your rat scheme!" you say as you punch the guy. He runs away, but leaves 10 coins behind in his confusion.]],
+        image = image.plus10,
       }
     end
   },

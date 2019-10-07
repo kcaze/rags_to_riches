@@ -25,7 +25,7 @@ return {
       state.coins = state.coins + 1
       return {
         description = "The vender refuses but you chase down a nearby pigeon that stole a scrap of bread and $1 from the vendor.",
-        image = image.placeholder
+        image = image.plus1
       }
     end
   },
@@ -34,7 +34,7 @@ return {
     effect = function (state)
       return {
         description = "The vender shooes you away.",
-        image = image.placeholder
+        image = image.shrug
       }
     end
   }

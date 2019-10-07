@@ -16,7 +16,7 @@ return {
         table.insert(state.items, item.dealer)
         return {
           description = [[You convince the villager that she should in fact deal rats too. You gain a dealer!]],
-          image = image.placeholder,
+          image = image.dealer,
         }
       else
         state.hp = state.hp - 10
@@ -34,13 +34,13 @@ return {
       state.coins = state.coins + 50
         return {
           description = [[Turns out you know the villager's grandma. You blackmail the villager into giving you 50 coins.]],
-          image = image.placeholder,
+          image = image.plus50,
         }
       else
       state.coins = state.coins - 10
         return {
           description = [[You try to blackmail the villager, but they blackmail you instead. You lose 10 coins.]],
-          image = image.placeholder,
+          image = image.bad,
         }
       end
     end
@@ -53,13 +53,13 @@ return {
         state.hp = state.hp - 15
         return {
           description = [[The villager just stares at you. You question your life. You lose 15 hp.]],
-          image = image.placeholder,
+          image = image.shrug,
         }
       else
         state.hp = state.coins + 5
         return {
           description = [[The villager pities you and hands you 5 coins.]],
-          image = image.placeholder,
+          image = image.plus5,
         }
         
       end

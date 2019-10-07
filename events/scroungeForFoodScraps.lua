@@ -17,7 +17,7 @@ return {
         state.coins = state.coins + 2
         return {
           description = "You lick the walls of the dumpster. It's slightly restorative and you gain 1 hp. You also find 2 coins in the process.",
-          image = image.placeholder
+          image = image.plus2
         }
       elseif p <= 0.80 then
         state.hp = state.hp - 3
@@ -29,7 +29,7 @@ return {
         state.coins = state.coins + 5
         return {
           description = "You don't see anything edible. Wait... is that a pocketwatch?! You take the watch to a pawnshop and sell it for $5.",
-          image = image.placeholder
+          image = image.plus5
         }
       end
     end
@@ -42,13 +42,13 @@ return {
         state.hp = state.hp + 2
         return {
           description = "You find some chicken bones in the dumpster. They're slightly restorative and you gain 2 hp.",
-          image = image.placeholder
+          image = image.good
         }
       else
         state.coins = state.coins + 2
         return {
           description = "You don't find any food but it looks like someone dropped $2 in the dumpster. You take it.",
-          image = image.placeholder
+          image = image.plus2
         }
       end
     end

@@ -16,7 +16,7 @@ return {
       state.hp = state.hp + 5;
       return {
         description = "You wolf down the apple. It fills you up with that nice apple aroma. You regain 5 HP.",
-        image = image.placeholder
+        image = image.good
       }
     end
   },
@@ -27,7 +27,7 @@ return {
       state.coins = state.coins + 5
       return {
         description = 'You flaunt the apple. How beautiful! How dazzling! How tasty! A stranger is convinced and gives you $5 for it.',
-        image = image.placeholder
+        image = image.plus5
       }
     end
   },
@@ -36,7 +36,7 @@ return {
     effect = function (state)
       return {
         description = 'You look at the apple carefully. "Not this time, you little fruit!" you mutter as you put it away.',
-        image = image.placeholder
+        image = image.shrug
       }
     end
   }

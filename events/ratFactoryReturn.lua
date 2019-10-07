@@ -17,13 +17,13 @@ return {
         state.coins = state.coins + 100
         return {
           description = [[It's your lucky day! The factory did much better than anyone expected, and you get a big share of 100 coins! ]],
-          image = image.placeholder,
+          image = image.plus100,
         }
       else
         state.coins = state.coins + 20
         return {
           description = [[The factory underperformed this time, but you still get 20 coins.]],
-          image = image.placeholder,
+          image = image.plus20,
         }
       end
     end
@@ -35,7 +35,7 @@ return {
       table.delete(state.items, item.factory)
       return {
         description = [[The factory performed right on average, giving you a solid 50 coins.]],
-        image = image.placeholder,
+        image = image.plus50,
       }
     end
   },
@@ -47,7 +47,7 @@ return {
         state.hp = state.coins + 10
         return {
           description = [[The factory pities you, it'll keep going and you get 10 coins to get back on your feet.]],
-          image = image.placeholder,
+          image = image.plus10,
         }
       else
         table.delete(state.items, item.factory)

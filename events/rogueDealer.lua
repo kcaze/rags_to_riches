@@ -16,13 +16,13 @@ return {
         table.insert(state.items, item.dealer)
         return {
           description = [[You smooth talk the dealer into joining you. ]],
-          image = image.placeholder,
+          image = image.dealer,
         }
       else
         state.hp = state.hp - 5
         return {
           description = [[The dealer is about to stab you... and you stop him with a bribe. Still, the fear makes you lose 5 hp.]],
-          image = image.placeholder,
+          image = image.dealerKnife,
         }
       end
     end
@@ -34,13 +34,13 @@ return {
         state.coins = state.coins + 150
         return {
           description = [[You make the dealer apologize. He is so sorry he hands you 150 coins.]],
-          image = image.placeholder,
+          image = image.plus150,
         }
       else
         state.hp = state.hp - 5
         return {
           description = [[You talk to the dealer, he tries to stab you and you run away. He leaves you with a minor scratch though, costing you 5 hp.]],
-          image = image.placeholder,
+          image = image.dealerKnife,
         }
       end
     end
@@ -53,13 +53,13 @@ return {
         state.hp = state.hp - 100
         return {
           description = [[The confrontation goes poorly, very poorly. He stabs you and you bleed away...]],
-          image = image.placeholder,
+          image = image.dealerKnife,
         }
       else
         state.hp = state.hp - 15
         return {
           description = [[You fight for your life and manage to get away with a couple cuts. You lose 15 hp.]],
-          image = image.placeholder,
+          image = image.dealerKnife,
         }
         
       end
