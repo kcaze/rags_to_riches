@@ -11,20 +11,20 @@ game.load = function(loadSave)
   --event.printEventTable()
 end
 
-game.draw = function (scale)
+game.draw = function (transform)
   state.draw(state.currentTurn)
   for i = 1,#state.currentTurn do
-    event.draw(state.currentTurn[i], scale)
+    event.draw(state.currentTurn[i], transform)
   end
   for i = 1, #state.currentTurn.coins do
     coin.draw(state.currentTurn.coins[i])
   end
 end
 
-game.update = function (dt, gameScale)
+game.update = function (dt, transform)
   state.update(dt)
   for i = 1, #state.currentTurn.coins do
-    coin.update(state.currentTurn.coins[i], gameScale)
+    coin.update(state.currentTurn.coins[i], transform)
   end
 end
 
