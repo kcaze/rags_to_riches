@@ -3,6 +3,7 @@ local inspect = require('inspect')
 local font = require('font')
 local coin = require('coin')
 local event = require('event')
+local item = require('item')
 local image = require('image')
 local savefile = require('savefile')
 
@@ -16,10 +17,12 @@ state.initializeState = function(shouldLoad)
   state.ratLevel = 0
   state.ratsSold = 0
   state.appleFestival = 0
+  state.knightInvited = false
+  state.sunsPraised = 0
   state.gameOver = false
   state.gameWon = false
   state.gameWinScreen = false
-  state.newTurn(state, shouldLoad)
+state.newTurn(state, shouldLoad)
 end
 
 local bg = 0
@@ -32,7 +35,10 @@ state.update = function (dt)
   image['bg'..bg..'Quad']:setViewport(bg_offset_w,bg_offset_h,800,600,image['bg'..bg]:getWidth(),image['bg'..bg]:getHeight())
 end
 
-state.draw = function (currentTurn)
+state.draw = function (currentTurn, transform)
+  local mx = (love.mouse.getX() - transform.dx) / transform.scale
+  local my = (love.mouse.getY() - transform.dy) / transform.scale
+
   love.graphics.setColor(1,1,1,1)
   love.graphics.draw(image['bg'..bg], image['bg'..bg..'Quad'], 0, 0)
   font.setFont(18)
@@ -51,8 +57,6 @@ state.draw = function (currentTurn)
   font.setFont(16)
   love.graphics.print("Inventory:", 100,2)
   local idx = 0
-  local mx = love.mouse.getX()
-  local my = love.mouse.getY()
   for itemObj, itemNum in pairs(itemCounters) do
     idx = idx + 1
     love.graphics.draw(itemObj.image, 125+idx*50,5,0, 40/200,40/200)
@@ -64,17 +68,17 @@ state.draw = function (currentTurn)
   end
 
   if state.gameWinScreen then
-    drawGameWon(currentTurn)
+    drawGameWon(currentTurn, transform)
     return
   elseif state.gameOver then
-    state.drawGameOver(currentTurn)
+    state.drawGameOver(currentTurn, transform)
     return
   end
 
   local semiBlack = {0,0,0,0.75}
   local black = {0,0,0,1}
   if state.coins >= 1 then
-    if love.mouse.getX() >= 5 and love.mouse.getX() <= 85 and love.mouse.getY() < 600 and love.mouse.getY() >= 575 and state.coins >= 1 then
+    if mx >= 5 and mx <= 85 and my < 600 and my >= 575 and state.coins >= 1 then
       love.graphics.setColor({144/255*0.5,105/255*0.5,63/255*0.5,1})
       love.graphics.rectangle('fill', 5, 575, 80, 25, 6, 6, 50)
       love.graphics.setColor(black)
@@ -90,7 +94,7 @@ state.draw = function (currentTurn)
   end
 
   if state.coins >= 5 then
-    if love.mouse.getX() >= 5 and love.mouse.getX() <= 85 and love.mouse.getY() < 575 and love.mouse.getY() >= 550 and state.coins >= 5 then
+    if mx >= 5 and mx <= 85 and my < 575 and my >= 550 and state.coins >= 5 then
       love.graphics.setColor({140/255*0.5,140/255*0.5,140/255*0.5,1})
       love.graphics.rectangle('fill', 5, 550, 80, 25, 6, 6, 50)
       love.graphics.setColor(black)
@@ -106,7 +110,7 @@ state.draw = function (currentTurn)
   end
 
   if state.coins >= 25 then
-    if love.mouse.getX() >= 5 and love.mouse.getX() <= 85 and love.mouse.getY() < 550 and love.mouse.getY() >= 525 and state.coins >= 25 then
+    if mx >= 5 and mx <= 85 and my < 550 and my >= 525 and state.coins >= 25 then
       love.graphics.setColor({191/255*0.5,196/255*0.5,196/255*0.5,1})
       love.graphics.rectangle('fill', 5, 525, 80, 25, 6, 6, 50)
       love.graphics.setColor(black)
@@ -122,7 +126,7 @@ state.draw = function (currentTurn)
   end
 
   if state.coins >= 100 then
-    if love.mouse.getX() >= 5 and love.mouse.getX() <= 85 and love.mouse.getY() < 525 and love.mouse.getY() >= 500 and state.coins >= 100 then
+    if mx >= 5 and mx <= 85 and my < 525 and my >= 500 and state.coins >= 100 then
       love.graphics.setColor({223/255*0.5,175/255*0.5,62/255*0.5,1})
       love.graphics.rectangle('fill', 5, 500, 80, 25, 6, 6, 50)
       love.graphics.setColor(black)
@@ -138,7 +142,7 @@ state.draw = function (currentTurn)
   end
 
   if state.coins >= 1000 then
-    if love.mouse.getX() >= 5 and love.mouse.getX() <= 85 and love.mouse.getY() < 500 and love.mouse.getY() >= 475 and state.coins >= 1000 then
+    if mx >= 5 and mx <= 85 and my < 500 and my >= 475 and state.coins >= 1000 then
       love.graphics.setColor({216/255*0.5,181/255*0.5,181/255*0.5,1})
       love.graphics.rectangle('fill', 5, 475, 80, 25, 6, 6, 50)
       love.graphics.setColor(black)
@@ -163,7 +167,7 @@ state.draw = function (currentTurn)
     turnDone = true
   end
   if turnDone == true then
-    if love.mouse.getX() >= (800-100-5) and love.mouse.getX() <= 800-5 and love.mouse.getY() <= 600 and love.mouse.getY() >= (600-30) then
+    if mx >= (800-100-5) and mx <= 800-5 and my <= 600 and my >= (600-30) then
       love.graphics.setColor({43/255*0.5,181/255*0.5,102/255*0.5,1})
       love.graphics.rectangle('fill', 800-100-5, 600-30, 100, 30, 6, 6, 50)
       love.graphics.setNewFont("font.ttf", 24):setLineHeight(0.75)
@@ -177,7 +181,9 @@ state.draw = function (currentTurn)
   end
 end
 
-state.drawGameOver = function(currentTurn)
+state.drawGameOver = function(currentTurn, transform)
+  local mx = (love.mouse.getX() - transform.dx) / transform.scale
+  local my = (love.mouse.getY() - transform.dy) / transform.scale
   local black = {0,0,0,1}
   local semiBlack = {0,0,0,0.75}
   local width = 200
@@ -193,14 +199,14 @@ state.drawGameOver = function(currentTurn)
   love.graphics.printf({black, "Game Over"}, x+13, y+10, width, "center")
   love.graphics.setNewFont("font.ttf", 16):setLineHeight(0.75)
   love.graphics.printf({semiBlack, "You started from nothing and clawed your way through " .. state.day-1 .. " arduous " ..(state.day > 1 and "days" or "day")..". But in the end, it doesn't even matter."}, x+13, y+55, width)
-    if math.sqrt(math.pow(love.mouse.getX() - circleX, 2) + math.pow(love.mouse.getY() - circleY, 2)) <= r then
+    if math.sqrt(math.pow(mx - circleX, 2) + math.pow(my - circleY, 2)) <= r then
       love.graphics.setColor(0,0,0,0.4)
     else
       love.graphics.setColor(0,0,0,0.15)
     end
     love.graphics.setLineWidth(4)
     love.graphics.circle("line", circleX, circleY, r, 100)
-  if math.sqrt(math.pow(love.mouse.getX() - circleX, 2) + math.pow(love.mouse.getY() - circleY, 2)) <= r then
+  if math.sqrt(math.pow(mx - circleX, 2) + math.pow(my - circleY, 2)) <= r then
     love.graphics.setColor(0,0,0,0.55)
   else
     love.graphics.setColor(0,0,0,0.3)
@@ -211,7 +217,9 @@ state.drawGameOver = function(currentTurn)
   love.graphics.printf({black,"Restart"}, x+226/2-29, y+257, 60, "center")
 end
 
-function drawGameWon(currentTurn)
+function drawGameWon(currentTurn, transform)
+  local mx = (love.mouse.getX() - transform.dx) / transform.scale
+  local my = (love.mouse.getY() - transform.dy) / transform.scale
   local black = {0,0,0,1}
   local semiBlack = {0,0,0,0.75}
   local width = 200
@@ -227,14 +235,14 @@ function drawGameWon(currentTurn)
   love.graphics.printf({black, "You Win"}, x+13, y+10, width, "center")
   love.graphics.setNewFont("font.ttf", 16):setLineHeight(0.75)
   love.graphics.printf({semiBlack, "You started from nothing and clawed your way through " .. state.day-1 .. " arduous " ..(state.day > 1 and "days" or "day")..". Finally, your journey has reached a successful conclusion! This was a true rag to riches story and you will be remembered for centuries to come..."}, x+13, y+55, width)
-    if math.sqrt(math.pow(love.mouse.getX() - circleX, 2) + math.pow(love.mouse.getY() - circleY, 2)) <= r then
+    if math.sqrt(math.pow(mx - circleX, 2) + math.pow(my - circleY, 2)) <= r then
       love.graphics.setColor(0,0,0,0.4)
     else
       love.graphics.setColor(0,0,0,0.15)
     end
     love.graphics.setLineWidth(4)
     love.graphics.circle("line", circleX, circleY, r, 100)
-  if math.sqrt(math.pow(love.mouse.getX() - circleX, 2) + math.pow(love.mouse.getY() - circleY, 2)) <= r then
+  if math.sqrt(math.pow(mx - circleX, 2) + math.pow(my - circleY, 2)) <= r then
     love.graphics.setColor(0,0,0,0.55)
   else
     love.graphics.setColor(0,0,0,0.3)
@@ -245,7 +253,7 @@ function drawGameWon(currentTurn)
   love.graphics.printf({black,"Restart"}, x+226/2-29, y+257, 60, "center")
 end
 
-state.mousepressed = function(currentTurn, mx,my) 
+state.mousepressed = function(currentTurn, mx, my) 
   if state.gameOver then
     local width = 200
     local height = 300

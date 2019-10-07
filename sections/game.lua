@@ -12,7 +12,7 @@ game.load = function(loadSave)
 end
 
 game.draw = function (transform)
-  state.draw(state.currentTurn)
+  state.draw(state.currentTurn, transform)
   for i = 1,#state.currentTurn do
     event.draw(state.currentTurn[i], transform)
   end
