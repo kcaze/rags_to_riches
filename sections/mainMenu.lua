@@ -48,9 +48,9 @@ mainMenu.draw = function ()
   love.graphics.printf('Ludum Dare 45 entry by Ena Hariyoshi, Herman Chau, and Pierre Karashchuk', -6, 575, 800, 'right')
 end
 
-mainMenu.update = function (dt)
-  local mx = love.mouse.getX()
-  local my = love.mouse.getY()
+mainMenu.update = function (dt, scale)
+  local mx = love.mouse.getX() / scale
+  local my = love.mouse.getY() / scale
 
   if mx >= (800-150)/2 and mx <= (800+150)/2 and my >= 240 and my <= 240+36+20 then
     newGameFloat = math.fmod(newGameFloat + 8*dt, 2*math.pi)

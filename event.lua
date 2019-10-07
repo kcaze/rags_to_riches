@@ -12,7 +12,7 @@ cardBackground[100] = image.card100
 cardBackground[1000] = image.card1000
 
 -- Draw event e.
-event.draw = function (obj)
+event.draw = function (obj, scale)
   local x = obj.x
   local y = obj.y
   local e = obj.event
@@ -20,6 +20,8 @@ event.draw = function (obj)
   local semiBlack = {0,0,0,0.75}
   local width = 200
   local height = 300
+  local mouseX = love.mouse.getX() / scale
+  local mouseY = love.mouse.getY() / scale
   love.graphics.setColor(1,1,1,1)
   love.graphics.draw(cardBackground[e.amount], x, y)
   font.setFont(24)
@@ -36,14 +38,16 @@ event.draw = function (obj)
     local circleX = x+226/2
     local circleY = y+305
     local r = 30
-    if math.sqrt(math.pow(love.mouse.getX() - circleX, 2) + math.pow(love.mouse.getY() - circleY, 2)) <= r then
+    if math.sqrt(math.pow(mouseX - circleX, 2) +
+                 math.pow(mouseY - circleY, 2)) <= r then
       love.graphics.setColor(0,0,0,0.5)
     else
       love.graphics.setColor(0,0,0,0.25)
     end
     love.graphics.setLineWidth(4)
     love.graphics.circle("line", circleX, circleY, 30, 100)
-    if math.sqrt(math.pow(love.mouse.getX() - circleX, 2) + math.pow(love.mouse.getY() - circleY, 2)) <= r then
+    if math.sqrt(math.pow(mouseX - circleX, 2) +
+                 math.pow(mouseY - circleY, 2)) <= r then
       love.graphics.setColor(0,0,0,0.65)
     else
       love.graphics.setColor(0,0,0,0.4)

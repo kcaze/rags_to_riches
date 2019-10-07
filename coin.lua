@@ -32,10 +32,10 @@ coin.draw = function (c)
   end
 end
 
-coin.update = function (c)
+coin.update = function (c, scale)
   if c.dragging then
-    c.x = love.mouse.getX()
-    c.y = love.mouse.getY()
+    c.x = love.mouse.getX() / scale
+    c.y = love.mouse.getY() / scale
   end
 end
 

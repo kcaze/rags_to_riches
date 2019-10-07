@@ -20,13 +20,13 @@ return {
         table.insert(state.items, item.rat)
         return {
           description = [[You take the rat to the doctor, it's healed! You get one rat.]],
-          image = image.rat
+          image = image.ratHappy
         }
       else
         state.hp = state.hp - 5
         return {
           description = [[Ouch! The rat bites you. It hurts! But it's not infected, nice. You lose 5 hp.]],
-          image = image.placeholder
+          image = image.ratAngry
         }
       end
     end
@@ -46,7 +46,7 @@ return {
         state.hp = state.hp - 5
         return {
           description = [[Ouch! The rat bites you. It hurts! But it's not infected, nice. You lose 5 hp.]],
-          image = image.placeholder
+          image = image.ratAngry
         }
       end
     end
@@ -59,12 +59,12 @@ return {
         state.hp = state.hp - 100
         return {
           description = [[The rat jumps on you! Agh! It's infected. You get severly hit with the plague. You lose 100 hp.]],
-          image = image.rat
+          image = image.ratAngry
         }
       else
         return {
           description = [[The rat bites you. It's bad, it's really bad. You lose 20 hp.]],
-          image = image.placeholder
+          image = image.ratAngry
         }
       end
     end

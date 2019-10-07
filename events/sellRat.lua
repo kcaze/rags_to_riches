@@ -57,7 +57,7 @@ return {
         state.hp = state.hp - 2
         return {
           description = [[You try to sell your rat to a person on the street. She gets scared and runs away. Your rat get scared too and bites you, making you lose 2 hp.]],
-          image = image.bad,
+          image = image.ratAngry,
         }
         
       end
