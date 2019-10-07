@@ -5,9 +5,9 @@ local image = require("../image")
 return {
     name = "Battlefield Scavenging",
     amount = 5,
-    weight = 10000,
+    weight = 1,
     condition = function (state)
-      return true
+      return state.coins >= 5
     end,
     description = "You hear that last night the holy knights waged a war on the undead. Perhaps there are spoils to be had.",
     heads = {
