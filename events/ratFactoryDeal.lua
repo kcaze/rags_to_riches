@@ -22,6 +22,7 @@ return {
           image = image.placeholder,
         }
       else
+        table.insert(state.items, item.dealer)
         return {
           description = [[The "factory" is actually just one dealer. Heh.]],
           image = image.dealer
@@ -33,9 +34,12 @@ return {
     effectDescription = "+1 rat factory (80%), ??? (20%)",
     effect = function (state)
       local p = love.math.random()
+      if state.ratLevel == 4 then
+        p = 0
+      end
       if p < 0.8 then
         state.ratsSold = state.ratsSold + 8
-        table.insert(state.items, item.dealer)
+        table.insert(state.items, item.factory)
         return {
           description = [[It's a standard factory. Nice.]],
           image = image.factory,
