@@ -18,10 +18,11 @@ state.initializeState = function(shouldLoad)
   state.ratsSold = 0
   state.appleFestival = 0
   state.knightInvited = false
+  state.sunsPraised = 0
   state.gameOver = false
   state.gameWon = false
   state.gameWinScreen = false
-  state.newTurn(state, shouldLoad)
+state.newTurn(state, shouldLoad)
 end
 
 local bg = 0
