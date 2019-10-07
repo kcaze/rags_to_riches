@@ -56,7 +56,7 @@ return {
           image = image.shrug,
         }
       else
-        state.hp = state.coins + 5
+        state.coins = state.coins + 5
         return {
           description = [[The villager pities you and hands you 5 coins.]],
           image = image.plus5,

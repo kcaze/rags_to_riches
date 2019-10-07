@@ -6,7 +6,7 @@ return {
     name = "Your apple pie",
     amount = 25,
     condition = function (state)
-        return table.contains(state.items, items.applePie) and state.appleFestival == 0
+        return state.coins >= 25 and table.contains(state.items, items.applePie) and state.appleFestival == 0
     end,
     description = "People from all corners of the globe travel to you upon hearing rumors of your legendary apple pie.",
     heads = {

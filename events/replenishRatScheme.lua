@@ -56,7 +56,7 @@ return {
       state.hp = state.hp - 5
       return {
         description = [[You stare at the man, unanswering. Suddenly a rat jumps out of his trenchcoat and bites you. You lose 5 hp.]],
-        image = image.rat,
+        image = image.ratAngry,
       }
     end
   }
