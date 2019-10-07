@@ -42,15 +42,15 @@ return {
     end
   },
   beg = {
-    effectDescription = "-1 rat and +6 coins (20%), -2 hp (80%)",
+    effectDescription = "-1 rat and +5 coins (20%), -2 hp (80%)",
     effect = function (state)
       local p = love.math.random()
       if p < 0.2 then
         table.delete(state.items, item.rat)
         state.ratsSold = state.ratsSold + 1
-        state.coins = state.coins + 6
+        state.coins = state.coins + 5
         return {
-          description = [[You stumble upon a rat lover and talk up the rat you have. She buys your rat for 6 whole coins!]],
+          description = [[You stumble upon a rat lover and talk up the rat you have. She buys your rat for 5 whole coins!]],
           image = image.placeholder,
         }
       else
