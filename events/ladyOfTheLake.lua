@@ -7,7 +7,7 @@ return {
     amount = 100,
     weight = 0.5,
     condition = function (state)
-      return (table.contains(state.items, item.goldFish) or table.contains(state.items, item.redFish) or table.contains(state.items, item.redFish)) and state.knightInvited and not table.contains(state.items, item.ladyOfTheLake)
+      return (table.contains(state.items, item.goldFish) or table.contains(state.items, item.silverFish)) and state.knightInvited and not table.contains(state.items, item.ladyOfTheLake)
     end,
     description = "As you stroll across the lake, a lady emerges from the mist. \"I hear you need help fighting the undead.\"",
     heads = {
