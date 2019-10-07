@@ -3,7 +3,7 @@ local image = require("../image")
 return {
   name = "Mushroom Gathering",
   amount = 1,
-  weight = 0.5,
+  weight = 1,
   description = "The nearby forest is supposedly full of delicious mushrooms. You make your way to the forest in the hopes of filling your belly.",
   heads = {
     effectDescription = "+5 hp (20%), +1 hp and +1 coin (80%)",
