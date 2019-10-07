@@ -18,12 +18,12 @@ return {
         state.coins = state.coins + 50
         return {
           description = [[You negotiate a really good deal and obtain 50 coins!]],
-          image = image.placeholder,
+          image = image.plus50,
         }
       else
         return {
           description = [[You try negotiating but it fails. The dealer leaves you, alone and coinless. ]],
-          image = image.placeholder,
+          image = image.bad,
         }
       end
     end
@@ -36,7 +36,7 @@ return {
       state.ratsSold = state.ratsSold + 4
       return {
         description = [[You collect 20 coins as per usual.]],
-        image = image.placeholder,
+        image = image.plus20,
       }
     end
   },
@@ -50,13 +50,13 @@ return {
         state.coins = state.coins + 15
         return {
           description = [[You negotiate with the dealer, and he hands you 15 coins.]],
-          image = image.placeholder,
+          image = image.plus15,
         }
       else
         state.coins = state.coins + 5
         return {
           description = [[The dealer pities you and hands you 5 coins.]],
-          image = image.placeholder,
+          image = image.plus5,
         }
         
       end

@@ -19,7 +19,7 @@ return {
         table.insert(state.items, item.dealer)
         return {
           description = [[You pitch like crazy to the person... and they are convinced. So convinced that they rope their friend into it too. You get 2 dealers.]],
-          image = image.placeholder,
+          image = image.dealer,
         }
       else
         return {
@@ -38,13 +38,13 @@ return {
         table.insert(state.items, item.dealer)
         return {
           description = [[You convince one person to join you as a dealer! Yay!]],
-          image = image.placeholder,
+          image = image.dealer,
         }
       else
         state.ratLevel = 3
         return {
           description = [[The person turns out to be a rat provider. Woah! He shows you how to make rat provider deals. You advance to a rat dealmaker!]],
-          image = image.rat
+          image = image.placeholder
         }
       end
     end

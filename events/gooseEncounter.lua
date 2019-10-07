@@ -27,11 +27,11 @@ return {
     end
   },
   tails = {
-    effectDescription = "+8 coin",
+    effectDescription = "+10 coin",
     effect = function (state)
-      state.coins = state.coins + 8 
+      state.coins = state.coins + 10
       return {
-        description = "You steal the goose's egg and sell it for 8 coin.",
+        description = "You steal the goose's egg and sell it for 10 coin.",
         image = image.gooseWithBlueEgg
       }
     end

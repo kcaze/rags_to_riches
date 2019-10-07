@@ -24,7 +24,7 @@ return {
       else
         return {
           description = [[The "factory" is actually just one dealer. Heh.]],
-          image = image.placeholder
+          image = image.dealer
         }
       end
     end
@@ -38,7 +38,7 @@ return {
         table.insert(state.items, item.dealer)
         return {
           description = [[It's a standard factory. Nice.]],
-          image = image.placeholder,
+          image = image.factory,
         }
       else
         state.ratLevel = 4
@@ -64,7 +64,7 @@ return {
         table.insert(state.items, item.dealer)
         return {
           description = [[You beg the factory for a deal, they pity and give you one dealer. Not too shabby. ]],
-          image = image.placeholder,
+          image = image.dealer,
         }
       end
     end

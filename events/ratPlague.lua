@@ -25,7 +25,8 @@ return {
       else
         state.hp = state.hp - 5
         return {
-          description = [[Ouch! The rat bites you. It hurts! But it's not infected, nice. You lose 5 hp.]]
+          description = [[Ouch! The rat bites you. It hurts! But it's not infected, nice. You lose 5 hp.]],
+          image = image.placeholder
         }
       end
     end

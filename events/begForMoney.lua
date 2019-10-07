@@ -15,13 +15,13 @@ return {
         state.coins = state.coins + 5
         return {
           description = "A wealthy merchant takes pity on you and decides to give you $5.",
-          image = image.placeholder
+          image = image.plus5
         }
       else
         state.hp = state.hp - 2
         return {
           description = "You reach towards a wealthy merchant but, disgusted by your appearance, he kicks you.",
-          image = image.placeholder
+          image = image.punch
         }
       end
     end
@@ -33,13 +33,13 @@ return {
         state.coins = state.coins + 3
         return {
           description = "A passerby drops $3 into your hands. How lucky.",
-          image = image.placeholder
+          image = image.plus3
         }
       else
         state.coins = state.coins + 2
         return {
           description = "A passerby drops $2 into your hands. Better than nothing.",
-          image = image.placeholder
+          image = image.plus2
         }
       end
     end
@@ -51,7 +51,7 @@ return {
         state.coins = state.coins + 1
         return {
           description = "You are completely ignored, but you find $1 on the ground anyways.",
-          image = image.placeholder
+          image = image.plus1
         }
       else
         state.hp = state.hp - 2

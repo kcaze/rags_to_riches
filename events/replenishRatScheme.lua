@@ -29,13 +29,13 @@ return {
         table.insert(state.items, item.rat)
         return {
           description = [[The man hands you 4 rats... but only 1 of them is real! You try to demand your money back, but he's already gone...]],
-          image = image.placeholder,
+          image = image.rat,
         }
       else
         state.ratLevel = 2
         return {
           description = [[The man approaches you closer and whispers, "how would you like to join the rat gang?" You agree, and graduate to a level 2 rat dealer!]],
-          image = image.rat
+          image = image.dealer
         }
       end
     end
