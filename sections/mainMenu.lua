@@ -11,7 +11,7 @@ local track1 = love.audio.newSource("music/bgm.mp3", "stream")
 track1:setLooping(true)
 
 mainMenu.load = function()
-  --track1:play()
+  track1:play()
 end
 
 local bg_offset_w = 0
@@ -20,6 +20,8 @@ local newGameFloat = 0
 local newGameHover = false
 local continueFloat = 0
 local continueHover = false
+local musicOn = true
+local musicHover = false
 
 mainMenu.draw = function ()
   love.graphics.setColor(1,1,1,1)
@@ -46,6 +48,13 @@ mainMenu.draw = function ()
   love.graphics.setColor(0.5,0.5,0.5,1)
   font.setFont(16)
   love.graphics.printf('Ludum Dare 45 entry by Ena Hariyoshi, Herman Chau, and Pierre Karashchuk', -6, 575, 800, 'right')
+
+  if musicHover then
+    love.graphics.setColor(1,1,1,1)
+  else
+    love.graphics.setColor(0.5,0.5,0.5,1)
+  end
+  love.graphics.draw(musicOn and image.musicOn or image.musicOff, 0, 570, 0, 0.3, 0.3)
 end
 
 mainMenu.update = function (dt, transform)
@@ -73,6 +82,13 @@ mainMenu.update = function (dt, transform)
     end
     continueHover = false
   end
+
+  if mx >= 0 and mx <= 30 and my >= 570 and my <= 600 then
+    musicHover = true
+  else
+    musicHover = false
+  end
+
   bg_offset_w = (bg_offset_w - 4*dt)%image.mainMenuBg:getWidth()
   bg_offset_h = (bg_offset_h + 4*dt)%image.mainMenuBg:getHeight()
   image.mainMenuBgQuad:setViewport(bg_offset_w,bg_offset_h,800,600,image.mainMenuBg:getWidth(),image.mainMenuBg:getHeight())
@@ -84,6 +100,15 @@ mainMenu.mousepressed = function (x,y,button)
   end
   if continueHover then
     mainMenu.switchSection('game', true)
+  end
+  if musicHover then
+    if musicOn then
+      musicOn = false
+      love.audio.setVolume(0.0)
+    else
+      musicOn = true
+      love.audio.setVolume(1.0)
+    end
   end
 end
 

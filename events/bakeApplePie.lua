@@ -6,14 +6,12 @@ return {
     name = "Bake an apple pie",
     amount = 5,
     condition = function (state)
-        return state.coins >= 5 and table.count(state.items, items.apple) >= 5 and state.appleFestival == 0
+        return state.coins >= 5 and table.count(state.items, items.apple) >= 3 and state.appleFestival == 0
     end,
     description = "You have enough apples to bake an apple pie.",
     heads = {
-      effectDescription = "Success (-5 apples, +1 apple pie)",
+      effectDescription = "Obtain 1 'Apple Pie' (requires 3 'Red Apple')",
       effect = function (state)
-        table.delete(state.items, items.apple)
-        table.delete(state.items, items.apple)
         table.delete(state.items, items.apple)
         table.delete(state.items, items.apple)
         table.delete(state.items, items.apple)
@@ -35,12 +33,8 @@ return {
     end
     },
     beg = {
-      effectDescription = "Failure (-5 apples)",
+      effectDescription = "Lose an 'Apple'",
       effect = function (state)
-        table.delete(state.items, items.apple)
-        table.delete(state.items, items.apple)
-        table.delete(state.items, items.apple)
-        table.delete(state.items, items.apple)
         table.delete(state.items, items.apple)
         return {
           description = 'You left it in the oven for too long! Your apple pie is burned to a crisp.',
