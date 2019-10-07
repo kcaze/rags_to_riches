@@ -17,7 +17,7 @@ return {
       if table.contains(state.items, item.sirLaire) then
         recruited = recruited + 1
       end
-      return state.coins >= 1000 and recruited >= 2
+      return state.knightInvited and state.coins >= 1000 and recruited >= 2
     end,
     description = "The undead are growing stronger day by day and something must be done. This is it, you must eradicate them.",
     heads = {
