@@ -3,9 +3,9 @@ local image = require("../image")
 
 return {
   name = "Rogue dealer",
-  amount = 100,
+  amount = 25,
   condition = function (state)
-    return state.ratsSold > 20 and state.ratLevel >= 3
+    return state.ratsSold > 30 and state.ratLevel >= 3
   end,
   description = "A crazed dealer appears with a knife.",
   heads = {
@@ -28,13 +28,13 @@ return {
     end
   },
   tails = {
-    effectDescription = "+150 coins (20%) -5 hp (80%)",
+    effectDescription = "+100 coins (20%) -5 hp (80%)",
     effect = function (state)
       if p < 0.4 then
-        state.coins = state.coins + 150
+        state.coins = state.coins + 100
         return {
-          description = [[You make the dealer apologize. He is so sorry he hands you 150 coins.]],
-          image = image.plus150,
+          description = [[You make the dealer apologize. He is so sorry he hands you 100 coins.]],
+          image = image.plus100,
         }
       else
         state.hp = state.hp - 5

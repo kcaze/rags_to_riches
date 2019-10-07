@@ -14,7 +14,6 @@ return {
     effect = function (state)
       local p = love.math.random()
       if p < 0.5 then
-        state.ratsSold = state.ratsSold + 8
         table.insert(state.items, item.dealer)
         table.insert(state.items, item.dealer)
         return {
@@ -34,7 +33,6 @@ return {
     effect = function (state)
       local p = love.math.random()
       if p < 0.8 then
-        state.ratsSold = state.ratsSold + 4
         table.insert(state.items, item.dealer)
         return {
           description = [[You convince one person to join you as a dealer! Yay!]],
@@ -48,7 +46,6 @@ return {
             image = image.factory
           }
         else
-          state.ratsSold = state.ratsSold + 4
           table.insert(state.items, item.dealer)
           return {
             description = [[The person looks at you. "Wait, you're a rat dealmaker, isn't this beneath you?" He says... but is still convinced to join you.]],
