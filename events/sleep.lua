@@ -5,6 +5,9 @@ local item = require("../item")
 return {
   name = "Sleep",
   amount = 1,
+  condition = function (state)
+    return state.coins < 15
+  end,
   description = "Sleeping 8 hours a day is good for you!",
   heads = {
     effectDescription = "+3 hp, +5 coins (requires 'Tooth')",

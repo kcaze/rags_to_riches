@@ -5,7 +5,10 @@ local item = require("../item")
 return {
   name = "Get in a fight",
   amount = 1,
-  weight = 0.25,
+  weight = 0.5,
+  condition = function (state)
+    return state.coins < 10
+  end,
   description = "That scruffy redheaded idiot really got on your nerves.",
   heads = {
     effectDescription = "+3 coin, -1 hp",
