@@ -52,6 +52,9 @@ coin.mousereleased = function (state, currentTurn, c, mx, my)
       if (obj.used == false) and obj.event.amount <= c.amount and (math.sqrt(math.pow(mx - circleX, 2) + math.pow(my - circleY, 2)) <= 40) then
         if c.value == 'heads' then
           local outcome = obj.event.heads.effect(state)
+          if table.containsKey(outcome, 'win') and outcome.win then
+            state.gameWon = true
+          end
           obj.description = outcome.description
           obj.image = outcome.image
         else 

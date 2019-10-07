@@ -17,6 +17,8 @@ state.initializeState = function(shouldLoad)
   state.ratsSold = 0
   state.appleFestival = 0
   state.gameOver = false
+  state.gameWon = false
+  state.gameWinScreen = false
   state.newTurn(state, shouldLoad)
 end
 
@@ -61,7 +63,10 @@ state.draw = function (currentTurn)
     end
   end
 
-  if state.gameOver then
+  if state.gameWinScreen then
+    drawGameWon(currentTurn)
+    return
+  elseif state.gameOver then
     state.drawGameOver(currentTurn)
     return
   end
@@ -154,6 +159,9 @@ state.draw = function (currentTurn)
       turnDone = false
     end
   end
+  if state.gameWon then
+    turnDone = true
+  end
   if turnDone == true then
     if love.mouse.getX() >= (800-100-5) and love.mouse.getX() <= 800-5 and love.mouse.getY() <= 600 and love.mouse.getY() >= (600-30) then
       love.graphics.setColor({43/255*0.5,181/255*0.5,102/255*0.5,1})
@@ -203,7 +211,67 @@ state.drawGameOver = function(currentTurn)
   love.graphics.printf({black,"Restart"}, x+226/2-29, y+257, 60, "center")
 end
 
+function drawGameWon(currentTurn)
+  local black = {0,0,0,1}
+  local semiBlack = {0,0,0,0.75}
+  local width = 200
+  local height = 300
+  local x = 800/2 - 226/2
+  local y = 80
+  local r = 40
+  local circleX = x+226/2
+  local circleY = y+270
+  love.graphics.setColor(1,1,1,1)
+  love.graphics.draw(image.cardGameWon, x, y)
+  love.graphics.setNewFont("font.ttf", 24):setLineHeight(0.75)
+  love.graphics.printf({black, "You Win"}, x+13, y+10, width, "center")
+  love.graphics.setNewFont("font.ttf", 16):setLineHeight(0.75)
+  love.graphics.printf({semiBlack, "You started from nothing and clawed your way through " .. state.day-1 .. " arduous " ..(state.day > 1 and "days" or "day")..". Finally, your journey has reached a successful conclusion! This was a true rag to riches story and you will be remembered for centuries to come..."}, x+13, y+55, width)
+    if math.sqrt(math.pow(love.mouse.getX() - circleX, 2) + math.pow(love.mouse.getY() - circleY, 2)) <= r then
+      love.graphics.setColor(0,0,0,0.4)
+    else
+      love.graphics.setColor(0,0,0,0.15)
+    end
+    love.graphics.setLineWidth(4)
+    love.graphics.circle("line", circleX, circleY, r, 100)
+  if math.sqrt(math.pow(love.mouse.getX() - circleX, 2) + math.pow(love.mouse.getY() - circleY, 2)) <= r then
+    love.graphics.setColor(0,0,0,0.55)
+  else
+    love.graphics.setColor(0,0,0,0.3)
+  end
+  love.graphics.circle("fill", circleX, circleY, r-1, 100)
+  love.graphics.setColor(0,0,0,1)
+  love.graphics.setNewFont("font.ttf", 18):setLineHeight(0.75)
+  love.graphics.printf({black,"Restart"}, x+226/2-29, y+257, 60, "center")
+end
+
 state.mousepressed = function(currentTurn, mx,my) 
+  if state.gameOver then
+    local width = 200
+    local height = 300
+    local x = 800/2 - 226/2
+    local y = 80
+    local r = 40
+    local circleX = x+226/2
+    local circleY = y+270
+    if (math.sqrt(math.pow(mx - circleX, 2) + math.pow(my - circleY, 2)) <= r) then
+      state.initializeState()
+    end
+    return
+  elseif state.gameWinScreen then
+    local width = 200
+    local height = 300
+    local x = 800/2 - 226/2
+    local y = 80
+    local r = 40
+    local circleX = x+226/2
+    local circleY = y+270
+    if (math.sqrt(math.pow(mx - circleX, 2) + math.pow(my - circleY, 2)) <= r) then
+      state.initializeState()
+    end
+    return
+  end
+
   if mx >= 5 and mx <= 85 and my < 600 and my >= 575 and state.coins >= 1 then
     state.coins = state.coins - 1
     table.insert(currentTurn.coins, coin.new(state, 1))
@@ -236,23 +304,14 @@ state.mousepressed = function(currentTurn, mx,my)
       turnDone = false
     end
   end
+  if state.gameWon then
+    turnDone = true
+  end
   if turnDone == true and mx >= (800-100-5) and mx <= 800-5 and my <= 600 and my >= (600-30) then
     state.day = state.day + 1
     state.newTurn(state)
   end
 
-  if state.gameOver then
-    local width = 200
-    local height = 300
-    local x = 800/2 - 226/2
-    local y = 80
-    local r = 40
-    local circleX = x+226/2
-    local circleY = y+270
-    if (math.sqrt(math.pow(mx - circleX, 2) + math.pow(my - circleY, 2)) <= r) then
-      state.initializeState()
-    end
-  end
 end
 
 getEvents = function(state)
@@ -298,8 +357,12 @@ state.newTurn = function(state, shouldLoad)
     coins = {}
   }
   
-  if state.hp <= 0 then
+  if state.gameWon then
+    state.gameWinScreen = true
+    state.currentTurn = turn
+  elseif state.hp <= 0 then
     state.gameOver = true
+    state.currentTurn = turn
   elseif shouldLoad then
     savefile.load(state)
   else
