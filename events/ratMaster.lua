@@ -16,7 +16,7 @@ return {
       if p < 0.5 then
         return {
           description = [[You become the rat master, king of the shadow world.]],
-          image = image.placeholder,
+          image = image.ratking,
           win = true
         }
       else
@@ -34,7 +34,7 @@ return {
       table.insert(state.items, item.factory)
       return {
         description = [[You refuse to fight for the title, settling for one rat factory instead.]],
-        image = image.placeholder,
+        image = image.factory,
       }
     end
   },
