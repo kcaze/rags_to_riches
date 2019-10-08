@@ -33,23 +33,23 @@ return {
     effectDescription = "Prepare apples for showdown (+? apples)",
     effect = function (state)
       if love.math.random() <= 0.3 then
-        table.insert(state.items, items.apple)
-        table.insert(state.items, items.apple)
-        table.insert(state.items, items.apple)
+        table.insert(state.items, item.apple)
+        table.insert(state.items, item.apple)
+        table.insert(state.items, item.apple)
         return {
           description = "You scrounge together 3 more apples.",
           image = image.apple
         }
       else
         if love.math.random() <= 0.5 then
-          table.insert(state.items, items.apple)
-          table.insert(state.items, items.apple)
+          table.insert(state.items, item.apple)
+          table.insert(state.items, item.apple)
           return {
             description = "You find 2 more apples lying around.",
             image = image.apple
           }
         else
-          table.insert(state.items, items.apple)
+          table.insert(state.items, item.apple)
           return {
             description = "A festival goer generously hands you an apple.",
             image = image.apple
