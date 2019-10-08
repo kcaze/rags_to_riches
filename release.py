@@ -79,7 +79,7 @@ def build_osx():
 	app_folder = os.path.join(TMP_DIR, GAME_ID + ".app")
 	os.rename(os.path.join(TMP_DIR, "love.app"), app_folder)
 	shutil.copyfile(LOVE_FILE, os.path.join(app_folder, "Contents", "Resources", GAME_ID + ".love"))
-	shutil.copyfile(os.path.join("media", "Info.plist"), os.path.join(app_folder, "Contents", "Info.plist"))
+	#shutil.copyfile(os.path.join("media", "Info.plist"), os.path.join(app_folder, "Contents", "Info.plist"))
 
 	game_archive = GAME_ID + "-osx"
 	shutil.move(TMP_DIR, os.path.join(RELEASE_DIR, game_archive))

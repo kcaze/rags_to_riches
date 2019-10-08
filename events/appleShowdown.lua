@@ -11,9 +11,9 @@ return {
   end,
   description = "The mysterious old woman has terrorized your apple festival for long enough. You're going to take her down.",
   heads = {
-    effectDescription = "Showdown (Chance of victory: # of apples * 10%)",
+    effectDescription = "Win (# of 'Red Apple' * 10%), otherwise -25 hp",
     effect = function (state)
-      if love.math.random() <= table.count(state.items, item.apple) * 0.01 then
+      if love.math.random() <= table.count(state.items, item.apple) * 0.1 then
         state.appleFestival = state.appleFestival + 1
         return {
           description = "After a long, grueling fight, you throw one last apple at the stranger to knock out the last of her HP. After the fight, the Apple Fairy appears to thank you for removing the apple scourge. You become the Apple King.",
@@ -21,16 +21,16 @@ return {
           win = true
         }
       else
-        state.hp = state.hp - 100
+        state.hp = state.hp - 25
         return {
-          description = "You lose D:",
+          description = "You lose the fight and take 25 hp.",
           image = image.stranger
         }
       end
     end
   },
   tails = {
-    effectDescription = "Prepare apples for showdown (+? apples)",
+    effectDescription = "Obtain 3 'Red Apple' (30%), obtain 2 'Red Apple' (20%), obtain 'Red Apple' (50%)",
     effect = function (state)
       if love.math.random() <= 0.3 then
         table.insert(state.items, items.apple)
@@ -59,21 +59,15 @@ return {
     end
   },
   beg = {
-    effectDescription = "Chicken out (-1 apple)",
+    effectDescription = 'Lose 1 "Red Apple" and -1 coin',
     effect = function (state)
       if table.contains(state.items, item.apple) then
         table.delete(state.items, item.apple)
-        return {
-          description = "You lose an apple while you're dallying around.",
-          image = image.bad
-        }
-      else
-        state.coins = state.coins - 1
-        return {
-          description = "You lose a coin while you're dallying around.",
-          image = image.bad
-        }
       end
+      return {
+        description = "You lose chicken out and lose an apple and 1 coin while you're dallying around.",
+        image = image.bad
+      }
     end
   }
 }
