@@ -28,7 +28,7 @@ mainMenu.draw = function ()
   love.graphics.draw(image.mainMenuBg, image.mainMenuBgQuad, 0, 0)
   love.graphics.setColor(1,1,1,1)
   font.setFont(72)
-  love.graphics.printf('Beggars Can Be Choosers', 0, 40, 800, 'center')
+  love.graphics.printf('Beggars CAN Be Choosers', 0, 40, 800, 'center')
 
   font.setFont(36)
   if newGameHover then

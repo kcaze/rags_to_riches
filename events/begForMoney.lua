@@ -20,7 +20,7 @@ return {
       else
         state.hp = state.hp - 2
         return {
-          description = "You reach towards a wealthy merchant but, disgusted by your appearance, he kicks you.",
+          description = "You reach towards a wealthy merchant but, disgusted by your appearance, he punches you.",
           image = image.punch
         }
       end

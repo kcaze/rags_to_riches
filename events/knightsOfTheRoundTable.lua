@@ -27,6 +27,7 @@ return {
         if table.contains(state.items, item.sword) and table.contains(state.items, item.shield) then
           table.delete(state.items, item.sword)
           table.delete(state.items, item.shield)
+          state.coins = state.coins + 100
           return {
             description = 'You decide to sell off some of your extra equipment and obtain 100 coins.',
             image = image.knightsOfTheRoundTable

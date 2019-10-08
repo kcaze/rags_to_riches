@@ -26,7 +26,8 @@ return {
         if table.contains(state.items, item.merlin) and table.contains(state.items, item.ladyOfTheLake) and table.contains(state.items, item.sirLaire) then
           return {
             description = "You did it. The land is free from the shadows of the undead. The people crown you as King Arthur and your job here is done.",
-            image = image.placeholder
+            win=true,
+            image = image.crown
           }
         else
           return {
@@ -48,12 +49,12 @@ return {
     end
     },
     beg = {
-      effectDescription = "-15 hp",
+      effectDescription = "-25 hp",
       effect = function (state)
-        state.hp = state.hp - 15
+        state.hp = state.hp - 25
         return {
           description = 'The attack failed spectacularly and you are grievously injured in the process.',
-          image = image.bad
+          image = image.blood
         }
     end
     }

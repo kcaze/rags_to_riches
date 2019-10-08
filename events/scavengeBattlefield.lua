@@ -41,7 +41,7 @@ return {
           state.hp = state.hp - 5
           return {
             description = "You rummage through a cadaver's pockets when it suddenly springs to life and bites you for 5 hp!",
-            image = image.bad
+            image = image.blood
           }
         end
       end

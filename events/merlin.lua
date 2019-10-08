@@ -38,12 +38,12 @@ return {
       end
     },
     beg = {
-      effectDescription = "+10 coin, +5 hp",
+      effectDescription = "+10 coin, +10 hp",
       effect = function (state)
         state.coins = state.coins + 10
         state.hp = state.hp + 10
         return {
-          description = 'You spy a wizard through the window. Suddenly a spell is cast and you find 10 coins and recover 5 hp.',
+          description = 'You spy a wizard through the window. Suddenly a spell is cast and you find 10 coins and recover 10 hp.',
           image = image.merlin
         }
       end

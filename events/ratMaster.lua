@@ -22,7 +22,7 @@ return {
       else
         return {
           description = [[You fight for the rat master title, but lose. You lose 5 hp.]],
-          image = image.punch
+          image = image.blood
         }
       end
     end
