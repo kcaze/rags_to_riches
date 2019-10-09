@@ -30,14 +30,15 @@ return {
   tails = {
     effectDescription = "+50 coins (25%), -10 coins (75%)",
     effect = function (state)
+      local p = love.math.random()
       if p < 0.25 then
-      state.coins = state.coins + 50
+        state.coins = state.coins + 50
         return {
           description = [[Turns out you know the villager's grandma. You blackmail the villager into giving you 50 coins.]],
           image = image.plus50,
         }
       else
-      state.coins = state.coins - 10
+        state.coins = state.coins - 10
         return {
           description = [[You try to blackmail the villager, but they blackmail you instead. You lose 10 coins.]],
           image = image.bad,
