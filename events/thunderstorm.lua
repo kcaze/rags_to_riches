@@ -5,6 +5,9 @@ return {
   name = "Stormy weather",
   amount = 5,
   weight = 0.25,
+  condition = function(state)
+    return state.coins >= 10 and state.hp >= 10
+  end,
   description = "Dark clouds are looming above you.",
   heads = {
     effectDescription = "+1 red fish",

@@ -4,6 +4,10 @@ local image = require("../image")
 return {
   name = "An apple tree",
   amount = 5,
+  weight = 0.75,
+  condition = function (state)
+    return state.coins >= 5
+  end,
   description = "You stumble upon an apple tree. It's not yours, but nobody's watching, right?",
   heads = {
     effectDescription = "+2 apples",
