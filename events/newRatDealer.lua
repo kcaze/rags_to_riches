@@ -2,7 +2,7 @@ local item = require("../item")
 local image = require("../image")
 
 return {
-  name = "Take in a new rat dealer",
+  name = "New Rat Dealer",
   amount = 25,
   weight = 0.5,
   condition = function (state)
