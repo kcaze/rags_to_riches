@@ -3,7 +3,7 @@ local item = require("../item");
 local image = require("../image")
 
 return {
-  name = "Showdown",
+  name = "Apple Showdown",
   amount = 25,
   weight = 1.5,
   condition = function (state)
@@ -16,7 +16,7 @@ return {
       if love.math.random() <= table.count(state.items, item.apple) * 0.1 then
         state.appleFestival = state.appleFestival + 1
         return {
-          description = "After a long, grueling fight, you throw one last apple at the stranger to knock out the last of her HP. After the fight, the Apple Fairy appears to thank you for removing the apple scourge. You become the Apple King.",
+          description = "After a long, grueling fight, you throw one last apple at the witch and knock her out. The town celebrates and crowns you as the Apple King.",
           image = image.apple,
           win = true
         }
@@ -30,9 +30,9 @@ return {
     end
   },
   tails = {
-    effectDescription = "Obtain 3 'Red Apple' (30%), obtain 2 'Red Apple' (20%), obtain 'Red Apple' (50%)",
+    effectDescription = "Obtain 3 'Red Apple' (50%), obtain 'Red Apple' (50%)",
     effect = function (state)
-      if love.math.random() <= 0.3 then
+      if love.math.random() <= 0.5 then
         table.insert(state.items, item.apple)
         table.insert(state.items, item.apple)
         table.insert(state.items, item.apple)
@@ -41,20 +41,11 @@ return {
           image = image.apple
         }
       else
-        if love.math.random() <= 0.5 then
-          table.insert(state.items, item.apple)
-          table.insert(state.items, item.apple)
-          return {
-            description = "You find 2 more apples lying around.",
-            image = image.apple
-          }
-        else
-          table.insert(state.items, item.apple)
-          return {
-            description = "A festival goer generously hands you an apple.",
-            image = image.apple
-          }
-        end
+        table.insert(state.items, item.apple)
+        return {
+          description = "A festival goer generously hands you an apple.",
+          image = image.apple
+        }
       end
     end
   },
@@ -64,6 +55,7 @@ return {
       if table.contains(state.items, item.apple) then
         table.delete(state.items, item.apple)
       end
+      state.coins = math.max(0, state.coins - 1)
       return {
         description = "You lose chicken out and lose an apple and 1 coin while you're dallying around.",
         image = image.bad
