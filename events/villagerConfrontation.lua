@@ -19,9 +19,9 @@ return {
           image = image.dealer,
         }
       else
-        state.hp = state.hp - 10
+        state.hp = state.hp - 5
         return {
-          description = [[You try telling the villager to deal in rats, but she punches you! You lose 10 hp. ]],
+          description = [[You try telling the villager to deal in rats, but she punches you! You lose 5 hp. ]],
           image = image.punch,
         }
       end
