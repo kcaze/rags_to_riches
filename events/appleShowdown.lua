@@ -4,7 +4,7 @@ local image = require("../image")
 
 return {
   name = "Apple Showdown",
-  amount = 25,
+  amount = 100,
   weight = 1.5,
   condition = function (state)
     return state.appleFestival > 5
